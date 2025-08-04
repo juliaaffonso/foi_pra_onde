@@ -339,7 +339,7 @@
                 messageDiv.style.color = "black";
 
                 try {
-                    const res = await fetch("all_data.json"); // adjust path if needed
+                    const res = await fetch("data/all_data.json"); // adjust path if needed
                     const data = await res.json();
 
                     const filtered = data.filter(entry => {

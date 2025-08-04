@@ -19,7 +19,7 @@ retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504]
 session.mount("https://", HTTPAdapter(max_retries=retries))
 
 # ---- Scraper Function ----
-def scrape(start_date="2023-01-01", output_path="data/all_data.json"):
+def scrape(start_date="2023-01-01", output_path="docs/data/all_data.json"):
     date_list = pd.date_range(start=start_date, end=datetime.today()).strftime('%Y-%m-%d').tolist()
     full_data = []
 
