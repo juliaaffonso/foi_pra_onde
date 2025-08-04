@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- XLSX export -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+    <title>Foi pra onde?</title>
+
+    <!-- CSS and JS files here -->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #dfe3b9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header-visuals {
+            display: flex;
+            align-items: flex-end;
+            /* aligns SVG and gif bottom edges */
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .svg-logo {
+            width: 300px;
+            height: auto;
+            max-width: 150%;
+            align-self: flex-end;
+        }
+
+        .gif-local {
+            height: 250px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .header-text {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .header-text h4 {
+            color: #606770;
+            font-size: 1rem;
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
+        .header-text p {
+            font-size: 0.9rem;
+            color: #606770;
+            opacity: 0.6;
+            margin-top: 7px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        p a {
+            color: #149e59;
+            /* Matches your green button */
+            text-decoration: none;
+            /* Removes the underline */
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+            /* Optional hover effect */
+            color: #0c5014;
+            /* Darker green on hover */
+        }
+
+        .divider {
+            height: 3px;
+            background-color: #ccc;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        /* SVG Text fade transition for rest parts */
+        #part-rest1,
+        #part-rest2,
+        #part-rest3,
+        #part-rest4,
+        #part-rest5 {
+            transition: opacity 1s ease;
+            opacity: 0;
+        }
+
+        /* Main Content */
+
+        h6 {
+            color: #606770;
+            font-size: 1rem;
+            margin-top: 8px;
+            margin-bottom: 25px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            /* Wrap controls on smaller screens */
+        }
+
+        .date-picker,
+        .format-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="date"],
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        /* Download Button */
+        #downloadBtn {
+            background-color: #149e59;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 25px;
+            /* Aligns button with inputs */
+        }
+
+        #downloadBtn:hover {
+            background-color: #0c5014;
+            transform: translateY(-2px);
+        }
+
+        #downloadBtn:active {
+            transform: translateY(0);
+        }
+
+        /* Message Area */
+        #message {
+            margin-top: 20px;
+            font-weight: 500;
+            min-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-visuals">
+                <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 516.38 239.89"
+                    class="svg-logo">
+                    <defs>
+                        <style>
+                            .cls-1,
+                            .cls-2 {
+                                fill: #1d1d1b;
+                                font-family: Niramit-Bold, Niramit;
+                                font-weight: 700;
+                            }
+
+                            .cls-3 {
+                                font-size: 56px;
+                            }
+
+                            .cls-4 {
+                                font-size: 53px;
+                            }
+
+                            .cls-5 {
+                                letter-spacing: -.02em;
+                            }
+
+                            .cls-6 {
+                                letter-spacing: -.04em;
+                            }
+
+                            .cls-7 {
+                                letter-spacing: 0em;
+                            }
+
+                            .cls-2 {
+                                font-size: 176px;
+                                letter-spacing: .02em;
+                                opacity: .9;
+                            }
+
+                            .cls-8 {
+                                letter-spacing: .02em;
+                            }
+                        </style>
+                    </defs>
+
+                    <text class="cls-1" transform="translate(0 76.49)">
+                        <tspan class="cls-4">
+                            <tspan id="part-where1" x="0" y="0">where</tspan>
+                            <tspan id="part-rest1"> did the</tspan>
+
+                        </tspan>
+                        <tspan class="cls-3">
+                            <tspan id="part-rest2" class="cls-8" x="0" y="67.2">p</tspan>
+                            <tspan id="part-rest3" class="cls-5" x="34.16" y="67.2">r</tspan>
+                            <tspan id="part-rest4" class="cls-7" x="56.05" y="67.2">e</tspan>
+                            <tspan id="part-rest5" class="cls-8" x="87.13" y="67.2">sident go</tspan>
+                        </tspan>
+                    </text>
+
+                    <text class="cls-2" transform="translate(332.43 149.6)">
+                        <tspan id="part-question">?</tspan>
+                    </text>
+                </svg>
+
+                <img src="gifs/travolta-waiting.gif" alt="Travolta-waiting" class="gif-local" />
+            </div>
+
+            <div class="header-text">
+                <h4>This page provides a dataset of all Brazilian presidential meetings since 2023.</h4>
+                <p>(The data is updated daily — but remember to always cross-check it with the
+                    <a
+                        href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula">official
+                        agenda</a>.)
+                </p>
+            </div>
+        </header>
+
+        <div class="divider"></div>
+
+        <main>
+            <h6>Choose the dates, pick a format, and hit the green button below. ⬇</h6>
+
+            <form id="downloadForm">
+                <div class="controls">
+                    <div class="date-picker">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate" name="startDate" min="2023-01-01" required />
+                    </div>
+
+                    <div class="date-picker">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate" name="endDate" required />
+                    </div>
+
+                    <div class="format-selector">
+                        <label for="fileFormat">Format:</label>
+                        <select id="fileFormat" name="fileFormat">
+                            <option value="csv">CSV</option>
+                            <option value="xlsx">XLSX</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="downloadBtn">Download 📥</button>
+                </div>
+            </form>
+
+            <div id="message"></div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+            const downloadForm = document.getElementById("downloadForm");
+            const messageDiv = document.getElementById("message");
+
+            // Set default dates
+            const today = new Date().toISOString().split("T")[0];
+            startDateInput.value = "2023-01-01";
+            endDateInput.value = today;
+            startDateInput.max = today;
+            endDateInput.max = today;
+
+            downloadForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                messageDiv.textContent = "";
+
+                const startDate = new Date(startDateInput.value);
+                const endDate = new Date(endDateInput.value);
+                const fileFormat = document.getElementById("fileFormat").value;
+
+                if (endDate < startDate) {
+                    messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
+                    messageDiv.style.color = "red";
+                    return;
+                }
+
+                messageDiv.textContent = "Fetching and filtering data...";
+                messageDiv.style.color = "black";
+
+                try {
+                    const res = await fetch("all_data.json"); // adjust path if needed
+                    const data = await res.json();
+
+                    const filtered = data.filter(entry => {
+                        const date = new Date(entry.date); // assumes entry has a `date` field
+                        return date >= startDate && date <= endDate;
+                    });
+
+                    if (filtered.length === 0) {
+                        messageDiv.textContent = "No data found in that date range.";
+                        messageDiv.style.color = "orange";
+                        return;
+                    }
+
+                    const filename = `presidential_agenda_${startDateInput.value}_to_${endDateInput.value}.${fileFormat}`;
+
+                    if (fileFormat === "csv") {
+                        const csv = convertToCSV(filtered);
+                        const blob = new Blob([csv], { type: "text/csv" });
+                        triggerDownload(blob, filename);
+                    } else if (fileFormat === "xlsx") {
+                        const ws = XLSX.utils.json_to_sheet(filtered);
+                        const wb = XLSX.utils.book_new();
+                        XLSX.utils.book_append_sheet(wb, ws, "Agenda");
+                        XLSX.writeFile(wb, filename);
+                    }
+
+                    messageDiv.textContent = `Download ready: ${filename}`;
+                    messageDiv.style.color = "green";
+
+                } catch (err) {
+                    console.error(err);
+                    messageDiv.textContent = "Failed to fetch or process data.";
+                    messageDiv.style.color = "red";
+                }
+            });
+
+            function convertToCSV(data) {
+                const keys = Object.keys(data[0]);
+                const rows = data.map(obj => keys.map(k => `"${(obj[k] ?? "").toString().replace(/"/g, '""')}"`).join(","));
+                return [keys.join(","), ...rows].join("\n");
+            }
+
+            function triggerDownload(blob, filename) {
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // Animate SVG text
+            setTimeout(() => {
+                ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"].forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.opacity = "1";
+                });
+            }, 500);
+        });
+    </script>
+
+</body>
+
+</html>
