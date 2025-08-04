@@ -1,0 +1,33 @@
+name: Run Scraper
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # every hour
+  workflow_dispatch:     # manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install -r scraper/requirements.txt
+
+    - name: Run scraper
+      run: python scraper/scraper.py
+
+    - name: Commit and push scraped data
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add data/latest.json
+        git commit -m "Update scraped data"
+        git push
