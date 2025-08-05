@@ -1,46 +1,36 @@
 name: Run Scraper
 
+# You will get an error on the automatic updates committing
+# if you do not have this line
+# You didn't need it before, which is why a lot of yml job files
+# you see will not have it (but you need it now!!!)
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '7 7 * * *'  # 4:07 a.m. Brasília time (BRT = UTC-3)
   workflow_dispatch:     # manual trigger
 
 jobs:
-  scrape:
+  daily:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
-
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
-      # Note: persist-credentials is true by default, but it's good to be explicit.
-      # This step configures git to use the GITHUB_TOKEN automatically for push.
-      with:
-        persist-credentials: true
-
+    - name: Check out this repo
+      uses: actions/checkout@v2
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: '3.10'
-
-    - name: Install dependencies
-      run: pip install -r scraper/requirements.txt
-
-    - name: Run scraper
-      run: python scraper/scraper.py
-
-    # This step can now be simplified
-    - name: Commit and push scraped data
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        # Check if there are any changes to commit
-        if [ -n "$(git status --porcelain)" ]; then
-          git add docs/data/all_data.json
-          git commit -m "Update scraped data"
-          git push
-        else
-          echo "No changes to commit."
-        fi
+    - name: Install all necessary packages
+      run: pip install jupyter lxml pandas requests beautifulsoup4 html5lib tqdm
+    - name: Scraping today's data
+      run: jupyter nbconvert --to notebook --execute "homework_07.ipynb" --stdout
+    - name: Commit and push any changes
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
