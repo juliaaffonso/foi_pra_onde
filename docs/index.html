@@ -345,7 +345,7 @@
                     const data = await res.json();
 
                     const filtered = data.filter(entry => {
-                        const date = new Date(entry.date); // assumes entry has a `date` field
+                        const date = new Date(entry.data); // assumes entry has a `date` field
                         return date >= startDate && date <= endDate;
                     });
 
