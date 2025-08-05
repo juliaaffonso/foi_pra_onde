@@ -8,12 +8,17 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+      # Note: persist-credentials is true by default, but it's good to be explicit.
+      # This step configures git to use the GITHUB_TOKEN automatically for push.
       with:
-        persist-credentials: true  # ⬅️ Needed to allow pushing changes
+        persist-credentials: true
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -26,11 +31,16 @@ jobs:
     - name: Run scraper
       run: python scraper/scraper.py
 
+    # This step can now be simplified
     - name: Commit and push scraped data
-    run: |
-    git config user.name github-actions
-    git config user.email github-actions@github.com
-    git add docs/data/all_data.json
-    git commit -m "Update scraped data"
-    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
-
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        # Check if there are any changes to commit
+        if [ -n "$(git status --porcelain)" ]; then
+          git add docs/data/all_data.json
+          git commit -m "Update scraped data"
+          git push
+        else
+          echo "No changes to commit."
+        fi
