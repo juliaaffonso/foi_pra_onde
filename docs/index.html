@@ -194,6 +194,44 @@
             font-weight: 500;
             min-height: 20px;
         }
+
+        /* Search bar Styling */
+
+        #searchSection {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        #searchInput {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        /* Result bar Styling */
+
+        #results table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin-top: 20px;
+        }
+
+        #results th,
+        #results td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        #results thead {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -307,6 +345,12 @@
 
             <div id="message"></div>
         </main>
+        <section id="searchSection" style="margin-top: 40px; text-align: left;">
+            <h6>Search by participant name:</h6>
+            <input type="text" id="searchInput" placeholder="Type a name..."
+                style="padding: 10px; width: 100%; max-width: 400px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc;">
+            <div id="results" style="margin-top: 20px;"></div>
+        </section>
     </div>
 
     <script>
@@ -401,6 +445,67 @@
                 });
             }, 500);
         });
+
+        let allData = []; // store data globally
+
+        // Fetch data once at the start
+        fetch("data/all_data.json")
+            .then(res => res.json())
+            .then(json => {
+                allData = json;
+            })
+            .catch(err => {
+                console.error("Failed to fetch initial data:", err);
+            });
+
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+
+        searchInput.addEventListener("input", () => {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            if (!searchTerm) {
+                resultsDiv.innerHTML = "";
+                return;
+            }
+
+            const matches = allData
+                .filter(entry => entry.participantes && entry.participantes.toLowerCase().includes(searchTerm))
+                .sort((a, b) => new Date(b.data) - new Date(a.data));
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = `<p style="color: orange;">No results found.</p>`;
+                return;
+            }
+
+            const tableHTML = `
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+      <thead>
+        <tr style="background-color: #f0f0f0;">
+          <th style="padding: 8px; border: 1px solid #ccc;">Date</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Title</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Time</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Location</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Participants</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${matches.map(entry => `
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ccc;">${entry.data}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">${entry.compromisso}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">${entry.inicio}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">${entry.local}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">${entry.participantes}</td>
+          </tr>`).join("")}
+      </tbody>
+    </table>
+  `;
+
+            resultsDiv.innerHTML = tableHTML;
+        });
+
+
     </script>
 
 </body>

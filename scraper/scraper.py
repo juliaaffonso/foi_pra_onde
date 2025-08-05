@@ -2,7 +2,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util.retry import Retry
 from http.client import RemoteDisconnected
 from datetime import datetime
 import time
