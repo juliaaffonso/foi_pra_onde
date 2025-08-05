@@ -198,7 +198,7 @@
         /* Search bar Styling */
 
         #searchSection {
-            margin-top: 40px;
+            margin-top: 20px;
             text-align: left;
         }
 
@@ -345,12 +345,20 @@
 
             <div id="message"></div>
         </main>
+        <div class="divider"></div>
         <section id="searchSection" style="margin-top: 40px; text-align: left;">
-            <h6>Search by participant name:</h6>
-            <input type="text" id="searchInput" placeholder="Type a name..."
+            <h6>Search by:</h6>
+            <select id="searchField"
+                style="padding: 10px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 10px;">
+                <option value="participantes">Participant</option>
+                <option value="compromisso">Event title</option>
+            </select>
+
+            <input type="text" id="searchInput" placeholder="Type a name or event..."
                 style="padding: 10px; width: 100%; max-width: 400px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc;">
             <div id="results" style="margin-top: 20px;"></div>
         </section>
+
     </div>
 
     <script>
@@ -362,10 +370,27 @@
 
             // Set default dates
             const today = new Date().toISOString().split("T")[0];
+
+            // Set default and max dates
             startDateInput.value = "2023-01-01";
             endDateInput.value = today;
+            startDateInput.min = "2023-01-01";
+            endDateInput.min = "2023-01-01";
             startDateInput.max = today;
             endDateInput.max = today;
+
+            // Enforce calendar to open starting at min date
+            const enforceMinDateView = (inputElement, minDate) => {
+                inputElement.addEventListener("click", () => {
+                    if (!inputElement.value || new Date(inputElement.value) < new Date(minDate)) {
+                        inputElement.value = minDate;
+                        inputElement.dispatchEvent(new Event('input'));
+                    }
+                });
+            };
+
+            enforceMinDateView(startDateInput, "2023-01-01");
+            enforceMinDateView(endDateInput, "2023-01-01");
 
             downloadForm.addEventListener("submit", async (event) => {
                 event.preventDefault();
@@ -459,52 +484,54 @@
             });
 
         const searchInput = document.getElementById("searchInput");
+        const searchField = document.getElementById("searchField");
         const resultsDiv = document.getElementById("results");
 
         searchInput.addEventListener("input", () => {
-            const searchTerm = searchInput.value.toLowerCase().trim();
+            const query = searchInput.value.toLowerCase();
+            const field = searchField.value; // "participantes" or "compromisso"
 
-            if (!searchTerm) {
+            if (!query) {
                 resultsDiv.innerHTML = "";
                 return;
             }
 
-            const matches = allData
-                .filter(entry => entry.participantes && entry.participantes.toLowerCase().includes(searchTerm))
-                .sort((a, b) => new Date(b.data) - new Date(a.data));
+            const filtered = filteredData.filter(entry => {
+                const target = (entry[field] || "").toLowerCase();
+                return target.includes(query);
+            });
 
-            if (matches.length === 0) {
-                resultsDiv.innerHTML = `<p style="color: orange;">No results found.</p>`;
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = "<p>No matches found.</p>";
                 return;
             }
 
-            const tableHTML = `
-    <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
-      <thead>
-        <tr style="background-color: #f0f0f0;">
-          <th style="padding: 8px; border: 1px solid #ccc;">Date</th>
-          <th style="padding: 8px; border: 1px solid #ccc;">Title</th>
-          <th style="padding: 8px; border: 1px solid #ccc;">Time</th>
-          <th style="padding: 8px; border: 1px solid #ccc;">Location</th>
-          <th style="padding: 8px; border: 1px solid #ccc;">Participants</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${matches.map(entry => `
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ccc;">${entry.data}</td>
-            <td style="padding: 8px; border: 1px solid #ccc;">${entry.compromisso}</td>
-            <td style="padding: 8px; border: 1px solid #ccc;">${entry.inicio}</td>
-            <td style="padding: 8px; border: 1px solid #ccc;">${entry.local}</td>
-            <td style="padding: 8px; border: 1px solid #ccc;">${entry.participantes}</td>
-          </tr>`).join("")}
-      </tbody>
-    </table>
-  `;
+            const html = `
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="border: 1px solid #ccc; padding: 8px;">Date</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Event</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Start</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Location</th>
+              <th style="border: 1px solid #ccc; padding: 8px;">Participants</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtered.map(entry => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">${entry.data}</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${entry.compromisso}</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${entry.inicio}</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${entry.local}</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${entry.participantes}</td>
+              </tr>`).join("")}
+          </tbody>
+        </table>
+    `;
 
-            resultsDiv.innerHTML = tableHTML;
+            resultsDiv.innerHTML = html;
         });
-
 
     </script>
 
