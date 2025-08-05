@@ -72,6 +72,7 @@ def scrape(start_date="2023-01-01", output_path="docs/data/all_data.json"):
 
     # Save to JSON
     df = pd.DataFrame(full_data)
+    df = df.dropna(subset=['compromisso', 'inicio', 'local'])
     df.to_json(output_path, orient="records", force_ascii=False, indent=2)
     print(f"Scraping complete. {len(df)} records saved to {output_path}.")
 
