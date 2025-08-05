@@ -367,8 +367,13 @@
             const endDateInput = document.getElementById("endDate");
             const downloadForm = document.getElementById("downloadForm");
             const messageDiv = document.getElementById("message");
+            const searchInput = document.getElementById("searchInput");
+            const searchField = document.getElementById("searchField");
+            const resultsDiv = document.getElementById("results");
 
-            // Set default dates
+            let allData = [];      // All data loaded from JSON
+            let filteredData = []; // Data filtered by date (updated on form submit)
+
             const today = new Date().toISOString().split("T")[0];
 
             // Set default and max dates
@@ -392,15 +397,41 @@
             enforceMinDateView(startDateInput, "2023-01-01");
             enforceMinDateView(endDateInput, "2023-01-01");
 
+            // Load data once on page load
+            fetch("data/all_data.json")
+                .then(res => res.json())
+                .then(json => {
+                    allData = json;
+                    // Initially filter data by default dates so search has data
+                    filterByDateAndUpdate(startDateInput.value, endDateInput.value);
+                })
+                .catch(err => {
+                    console.error("Failed to fetch initial data:", err);
+                    messageDiv.textContent = "Failed to load data.";
+                    messageDiv.style.color = "red";
+                });
+
+            // Function to filter data by date and update filteredData
+            function filterByDateAndUpdate(start, end) {
+                const startDate = new Date(start);
+                const endDate = new Date(end);
+
+                filteredData = allData.filter(entry => {
+                    const entryDate = new Date(entry.data);
+                    return entryDate >= startDate && entryDate <= endDate;
+                });
+            }
+
+            // Handle download form submit
             downloadForm.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 messageDiv.textContent = "";
 
-                const startDate = new Date(startDateInput.value);
-                const endDate = new Date(endDateInput.value);
+                const startDate = startDateInput.value;
+                const endDate = endDateInput.value;
                 const fileFormat = document.getElementById("fileFormat").value;
 
-                if (endDate < startDate) {
+                if (new Date(endDate) < new Date(startDate)) {
                     messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
                     messageDiv.style.color = "red";
                     return;
@@ -410,28 +441,24 @@
                 messageDiv.style.color = "black";
 
                 try {
-                    const res = await fetch("data/all_data.json"); // adjust path if needed
-                    const data = await res.json();
+                    // Since data already loaded, no need to fetch again — just filter
+                    filterByDateAndUpdate(startDate, endDate);
 
-                    const filtered = data.filter(entry => {
-                        const date = new Date(entry.data); // assumes entry has a `date` field
-                        return date >= startDate && date <= endDate;
-                    });
-
-                    if (filtered.length === 0) {
+                    if (filteredData.length === 0) {
                         messageDiv.textContent = "No data found in that date range.";
                         messageDiv.style.color = "orange";
+                        resultsDiv.innerHTML = "";  // Clear search results as well
                         return;
                     }
 
-                    const filename = `presidential_agenda_${startDateInput.value}_to_${endDateInput.value}.${fileFormat}`;
+                    const filename = `presidential_agenda_${startDate}_to_${endDate}.${fileFormat}`;
 
                     if (fileFormat === "csv") {
-                        const csv = convertToCSV(filtered);
+                        const csv = convertToCSV(filteredData);
                         const blob = new Blob([csv], { type: "text/csv" });
                         triggerDownload(blob, filename);
                     } else if (fileFormat === "xlsx") {
-                        const ws = XLSX.utils.json_to_sheet(filtered);
+                        const ws = XLSX.utils.json_to_sheet(filteredData);
                         const wb = XLSX.utils.book_new();
                         XLSX.utils.book_append_sheet(wb, ws, "Agenda");
                         XLSX.writeFile(wb, filename);
@@ -442,9 +469,56 @@
 
                 } catch (err) {
                     console.error(err);
-                    messageDiv.textContent = "Failed to fetch or process data.";
+                    messageDiv.textContent = "Failed to process data.";
                     messageDiv.style.color = "red";
                 }
+            });
+
+            // Search input event — filter current filteredData by search query and selected field
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.trim().toLowerCase();
+                const field = searchField.value; // participantes or compromisso
+
+                if (!query) {
+                    resultsDiv.innerHTML = "";
+                    return;
+                }
+
+                const filtered = filteredData.filter(entry => {
+                    const target = (entry[field] || "").toLowerCase();
+                    return target.includes(query);
+                });
+
+                if (filtered.length === 0) {
+                    resultsDiv.innerHTML = "<p>No matches found.</p>";
+                    return;
+                }
+
+                const html = `
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Event</th>
+              <th>Start</th>
+              <th>Location</th>
+              <th>Participants</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${filtered.map(entry => `
+              <tr>
+                <td>${entry.data}</td>
+                <td>${entry.compromisso}</td>
+                <td>${entry.inicio}</td>
+                <td>${entry.local}</td>
+                <td>${entry.participantes}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        `;
+                resultsDiv.innerHTML = html;
             });
 
             function convertToCSV(data) {
@@ -469,68 +543,7 @@
                     if (el) el.style.opacity = "1";
                 });
             }, 500);
-        });
 
-        let allData = []; // store data globally
-
-        // Fetch data once at the start
-        fetch("data/all_data.json")
-            .then(res => res.json())
-            .then(json => {
-                allData = json;
-            })
-            .catch(err => {
-                console.error("Failed to fetch initial data:", err);
-            });
-
-        const searchInput = document.getElementById("searchInput");
-        const searchField = document.getElementById("searchField");
-        const resultsDiv = document.getElementById("results");
-
-        searchInput.addEventListener("input", () => {
-            const query = searchInput.value.toLowerCase();
-            const field = searchField.value; // "participantes" or "compromisso"
-
-            if (!query) {
-                resultsDiv.innerHTML = "";
-                return;
-            }
-
-            const filtered = filteredData.filter(entry => {
-                const target = (entry[field] || "").toLowerCase();
-                return target.includes(query);
-            });
-
-            if (filtered.length === 0) {
-                resultsDiv.innerHTML = "<p>No matches found.</p>";
-                return;
-            }
-
-            const html = `
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr>
-              <th style="border: 1px solid #ccc; padding: 8px;">Date</th>
-              <th style="border: 1px solid #ccc; padding: 8px;">Event</th>
-              <th style="border: 1px solid #ccc; padding: 8px;">Start</th>
-              <th style="border: 1px solid #ccc; padding: 8px;">Location</th>
-              <th style="border: 1px solid #ccc; padding: 8px;">Participants</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${filtered.map(entry => `
-              <tr>
-                <td style="border: 1px solid #ccc; padding: 8px;">${entry.data}</td>
-                <td style="border: 1px solid #ccc; padding: 8px;">${entry.compromisso}</td>
-                <td style="border: 1px solid #ccc; padding: 8px;">${entry.inicio}</td>
-                <td style="border: 1px solid #ccc; padding: 8px;">${entry.local}</td>
-                <td style="border: 1px solid #ccc; padding: 8px;">${entry.participantes}</td>
-              </tr>`).join("")}
-          </tbody>
-        </table>
-    `;
-
-            resultsDiv.innerHTML = html;
         });
 
     </script>
