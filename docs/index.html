@@ -456,7 +456,7 @@
                     if (fileFormat === "csv") {
                         const csv = convertToCSV(filteredData);
                         const bom = "\uFEFF";  // UTF-8 Byte Order Mark
-                        const blob = new Blob([csv], { type: "text/csv" });
+                        const blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
                         triggerDownload(blob, filename);
                     } else if (fileFormat === "xlsx") {
                         const ws = XLSX.utils.json_to_sheet(filteredData);
