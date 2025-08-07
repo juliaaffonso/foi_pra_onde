@@ -401,29 +401,47 @@
         const searchPresident = document.getElementById("searchPresident");
         const searchField = document.getElementById("searchField");
 
-        // Function to update date input constraints based on president
         function updateDateConstraints(president) {
-            const today = new Date().toISOString().slice(0, 10);
+            const today = new Date().toISOString().slice(0, 10);  // "YYYY-MM-DD"
+
             if (president === "lula") {
                 startDateInput.min = "2023-01-01";
                 startDateInput.max = today;
                 endDateInput.min = "2023-01-01";
                 endDateInput.max = today;
 
-                if (startDateInput.value < startDateInput.min || !startDateInput.value) startDateInput.value = startDateInput.min;
-                if (startDateInput.value > startDateInput.max) startDateInput.value = startDateInput.max;
-                if (endDateInput.value < endDateInput.min || !endDateInput.value) endDateInput.value = endDateInput.min;
-                if (endDateInput.value > endDateInput.max) endDateInput.value = endDateInput.max;
+                // Set default start date if empty or invalid
+                if (!startDateInput.value || startDateInput.value < "2023-01-01") {
+                    startDateInput.value = "2023-01-01";
+                } else if (startDateInput.value > today) {
+                    startDateInput.value = today;
+                }
+
+                // Set default end date to today if empty or invalid
+                if (!endDateInput.value || endDateInput.value < "2023-01-01") {
+                    endDateInput.value = today;
+                } else if (endDateInput.value > today) {
+                    endDateInput.value = today;
+                }
+
             } else if (president === "bolsonaro") {
                 startDateInput.min = "2019-01-01";
                 startDateInput.max = "2022-12-31";
                 endDateInput.min = "2019-01-01";
                 endDateInput.max = "2022-12-31";
 
-                if (startDateInput.value < startDateInput.min || startDateInput.value > "2022-12-31") startDateInput.value = startDateInput.min;
-                if (endDateInput.value < endDateInput.min || endDateInput.value > "2022-12-31") endDateInput.value = endDateInput.max;
+                // Constrain start date for Bolsonaro
+                if (!startDateInput.value || startDateInput.value < "2019-01-01" || startDateInput.value > "2022-12-31") {
+                    startDateInput.value = "2019-01-01";
+                }
+
+                // Constrain end date for Bolsonaro
+                if (!endDateInput.value || endDateInput.value < "2019-01-01" || endDateInput.value > "2022-12-31") {
+                    endDateInput.value = "2022-12-31";
+                }
             }
         }
+
 
         // Load JSON for the selected president
         async function loadPresidentData(president) {
