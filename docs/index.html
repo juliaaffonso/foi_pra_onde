@@ -468,9 +468,11 @@
         // Filter data by date range
         function filterByDate(start, end) {
             return allData.filter(entry => {
-                return entry.data >= start && entry.data <= end;
+                const entryDate = currentPresident === "lula" ? entry.data : entry.date;
+                return entryDate >= start && entryDate <= end;
             });
         }
+
 
         // Convert array to CSV string
         function convertToCSV(data) {
@@ -556,31 +558,39 @@
                 resultsDiv.innerHTML = "<p>No matches found.</p>";
                 return;
             }
-            const tableHeaders = currentPresident === 'lula' ?
-                `<th>Date</th><th>Event</th><th>Start</th><th>Location</th><th>Participants</th>` :
-                `<th>Date</th><th>Event</th><th>Start</th><th>Location</th>`;
 
-            const tableRows = data.map(entry => {
-                const participantsCell = currentPresident === 'lula' ? `<td>${entry.participantes || ""}</td>` : '';
-                return `
-                    <tr>
-                        <td>${entry.data}</td>
-                        <td>${entry.compromisso}</td>
-                        <td>${entry.inicio || ""}</td>
-                        <td>${entry.local || ""}</td>
-                        ${participantsCell}
-                    </tr>
-                `;
-            }).join('');
+            let tableHeaders = "";
+            let tableRows = "";
+
+            if (currentPresident === 'lula') {
+                tableHeaders = `<th>Date</th><th>Event</th><th>Start</th><th>Location</th><th>Participants</th>`;
+                tableRows = data.map(entry => `
+            <tr>
+                <td>${entry.data}</td>
+                <td>${entry.compromisso}</td>
+                <td>${entry.inicio || ""}</td>
+                <td>${entry.local || ""}</td>
+                <td>${entry.participantes || ""}</td>
+            </tr>
+        `).join('');
+            } else {
+                tableHeaders = `<th>Date</th><th>Event</th><th>Time</th>`;
+                tableRows = data.map(entry => `
+            <tr>
+                <td>${entry.date}</td>
+                <td>${entry.compromisso}</td>
+                <td>${entry.time || ""}</td>
+            </tr>
+        `).join('');
+            }
 
             resultsDiv.innerHTML = `
-            <table>
-                <thead>
-                    <tr>${tableHeaders}</tr>
-                </thead>
-                <tbody>${tableRows}</tbody>
-            </table>`;
+        <table>
+            <thead><tr>${tableHeaders}</tr></thead>
+            <tbody>${tableRows}</tbody>
+        </table>`;
         }
+
 
 
         // Handle search input filtering based on selected field
