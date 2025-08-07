@@ -204,12 +204,13 @@
             align-items: center;
         }
 
-
         .search-controls {
             display: flex;
+            justify-content: center;
+            align-items: flex-end;
             flex-wrap: wrap;
             gap: 15px;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         #searchInput {
@@ -221,6 +222,15 @@
             border-radius: 6px;
             border: 1px solid #ccc;
         }
+
+        .search-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            min-width: 200px;
+        }
+
 
         /* Results Table Styling */
         #results table {
@@ -380,194 +390,197 @@
                     </select>
                 </div>
                 <div class="format-selector">
-                    <label for="searchField">Search by:</label>
+                    <label for="searchField">Choose:</label>
                     <select id="searchField"></select>
                 </div>
+
+                <div class="search-input-wrapper">
+                    <label for="searchInput" style="visibility: hidden;">Search</label>
+                    <input type="text" id="searchInput" placeholder="Type here">
+                </div>
             </div>
-            <input type="text" id="searchInput" placeholder="Type a name or event...">
+
+
         </div>
-        <div id="results"></div>
 
-    </div>
+        <script>
+            let allData = [];
+            let currentPresident = "lula";
 
-    <script>
-        let allData = [];
-        let currentPresident = "lula";
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+            const downloadForm = document.getElementById("downloadForm");
+            const messageDiv = document.getElementById("message");
+            const searchInput = document.getElementById("searchInput");
+            const resultsDiv = document.getElementById("results");
+            const presidentSelect = document.getElementById("presidentSelect");
+            const searchPresident = document.getElementById("searchPresident");
+            const searchField = document.getElementById("searchField");
 
-        const startDateInput = document.getElementById("startDate");
-        const endDateInput = document.getElementById("endDate");
-        const downloadForm = document.getElementById("downloadForm");
-        const messageDiv = document.getElementById("message");
-        const searchInput = document.getElementById("searchInput");
-        const resultsDiv = document.getElementById("results");
-        const presidentSelect = document.getElementById("presidentSelect");
-        const searchPresident = document.getElementById("searchPresident");
-        const searchField = document.getElementById("searchField");
+            function updateDateConstraints(president) {
+                const today = new Date().toISOString().slice(0, 10);  // "YYYY-MM-DD"
 
-        function updateDateConstraints(president) {
-            const today = new Date().toISOString().slice(0, 10);  // "YYYY-MM-DD"
+                if (president === "lula") {
+                    startDateInput.min = "2023-01-01";
+                    startDateInput.max = today;
+                    endDateInput.min = "2023-01-01";
+                    endDateInput.max = today;
 
-            if (president === "lula") {
-                startDateInput.min = "2023-01-01";
-                startDateInput.max = today;
-                endDateInput.min = "2023-01-01";
-                endDateInput.max = today;
+                    // Set default start date if empty or invalid
+                    if (!startDateInput.value || startDateInput.value < "2023-01-01") {
+                        startDateInput.value = "2023-01-01";
+                    } else if (startDateInput.value > today) {
+                        startDateInput.value = today;
+                    }
 
-                // Set default start date if empty or invalid
-                if (!startDateInput.value || startDateInput.value < "2023-01-01") {
-                    startDateInput.value = "2023-01-01";
-                } else if (startDateInput.value > today) {
-                    startDateInput.value = today;
-                }
+                    // Set default end date to today if empty or invalid
+                    if (!endDateInput.value || endDateInput.value < "2023-01-01") {
+                        endDateInput.value = today;
+                    } else if (endDateInput.value > today) {
+                        endDateInput.value = today;
+                    }
 
-                // Set default end date to today if empty or invalid
-                if (!endDateInput.value || endDateInput.value < "2023-01-01") {
-                    endDateInput.value = today;
-                } else if (endDateInput.value > today) {
-                    endDateInput.value = today;
-                }
+                } else if (president === "bolsonaro") {
+                    startDateInput.min = "2019-01-01";
+                    startDateInput.max = "2022-12-31";
+                    endDateInput.min = "2019-01-01";
+                    endDateInput.max = "2022-12-31";
 
-            } else if (president === "bolsonaro") {
-                startDateInput.min = "2019-01-01";
-                startDateInput.max = "2022-12-31";
-                endDateInput.min = "2019-01-01";
-                endDateInput.max = "2022-12-31";
+                    // Constrain start date for Bolsonaro
+                    if (!startDateInput.value || startDateInput.value < "2019-01-01" || startDateInput.value > "2022-12-31") {
+                        startDateInput.value = "2019-01-01";
+                    }
 
-                // Constrain start date for Bolsonaro
-                if (!startDateInput.value || startDateInput.value < "2019-01-01" || startDateInput.value > "2022-12-31") {
-                    startDateInput.value = "2019-01-01";
-                }
-
-                // Constrain end date for Bolsonaro
-                if (!endDateInput.value || endDateInput.value < "2019-01-01" || endDateInput.value > "2022-12-31") {
-                    endDateInput.value = "2022-12-31";
+                    // Constrain end date for Bolsonaro
+                    if (!endDateInput.value || endDateInput.value < "2019-01-01" || endDateInput.value > "2022-12-31") {
+                        endDateInput.value = "2022-12-31";
+                    }
                 }
             }
-        }
 
 
-        // Load JSON for the selected president
-        async function loadPresidentData(president) {
-            messageDiv.textContent = "Loading data...";
-            let fileName = "";
-            if (president === "lula") {
-                fileName = "all_data.json";
-            } else if (president === "bolsonaro") {
-                fileName = "bolsonaro_agenda.json";
+            // Load JSON for the selected president
+            async function loadPresidentData(president) {
+                messageDiv.textContent = "Loading data...";
+                let fileName = "";
+                if (president === "lula") {
+                    fileName = "all_data.json";
+                } else if (president === "bolsonaro") {
+                    fileName = "bolsonaro_agenda.json";
+                }
+                try {
+                    const response = await fetch(`data/${fileName}`);
+                    if (!response.ok) throw new Error("Network response was not ok.");
+                    const data = await response.json();
+                    messageDiv.textContent = "";
+                    return data;
+                } catch (error) {
+                    messageDiv.textContent = `Error loading data: ${error.message}`;
+                    messageDiv.style.color = "red";
+                    return [];
+                }
             }
-            try {
-                const response = await fetch(`data/${fileName}`);
-                if (!response.ok) throw new Error("Network response was not ok.");
-                const data = await response.json();
+
+            // Filter data by date range
+            function filterByDate(start, end) {
+                return allData.filter(entry => {
+                    const entryDate = currentPresident === "lula" ? entry.data : entry.date;
+                    return entryDate >= start && entryDate <= end;
+                });
+            }
+
+
+            // Convert array to CSV string
+            function convertToCSV(data) {
+                if (data.length === 0) return "";
+                const headers = Object.keys(data[0]);
+                const csvRows = [headers.join(",")];
+                data.forEach(row => {
+                    const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
+                    csvRows.push(values.join(","));
+                });
+                return csvRows.join("\n");
+            }
+
+            // Trigger file download
+            function downloadBlob(content, filename, type) {
+                const blob = new Blob([content], { type });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.setAttribute("href", url);
+                a.setAttribute("download", filename);
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            // Handle download form submit
+            downloadForm.addEventListener("submit", (event) => {
+                event.preventDefault();
                 messageDiv.textContent = "";
-                return data;
-            } catch (error) {
-                messageDiv.textContent = `Error loading data: ${error.message}`;
-                messageDiv.style.color = "red";
-                return [];
-            }
-        }
 
-        // Filter data by date range
-        function filterByDate(start, end) {
-            return allData.filter(entry => {
-                const entryDate = currentPresident === "lula" ? entry.data : entry.date;
-                return entryDate >= start && entryDate <= end;
+                const startDate = new Date(startDateInput.value);
+                const endDate = new Date(endDateInput.value);
+                const fileFormat = document.getElementById("fileFormat").value;
+
+                if (endDate < startDate) {
+                    messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
+                    messageDiv.style.color = "red";
+                    return;
+                }
+
+                const filteredData = filterByDate(startDateInput.value, endDateInput.value);
+
+                if (filteredData.length === 0) {
+                    messageDiv.textContent = "No data found for the selected range.";
+                    messageDiv.style.color = "red";
+                    return;
+                }
+
+                if (fileFormat === "csv") {
+                    const csv = convertToCSV(filteredData);
+                    const bom = "\uFEFF"; // UTF-8 BOM
+                    downloadBlob(bom + csv, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.csv`, "text/csv;charset=utf-8;");
+                } else if (fileFormat === "xlsx") {
+                    const worksheet = XLSX.utils.json_to_sheet(filteredData);
+                    const workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
+                    XLSX.writeFile(workbook, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.xlsx`);
+                }
+
+                messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
+                messageDiv.style.color = "green";
             });
-        }
 
-
-        // Convert array to CSV string
-        function convertToCSV(data) {
-            if (data.length === 0) return "";
-            const headers = Object.keys(data[0]);
-            const csvRows = [headers.join(",")];
-            data.forEach(row => {
-                const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
-                csvRows.push(values.join(","));
-            });
-            return csvRows.join("\n");
-        }
-
-        // Trigger file download
-        function downloadBlob(content, filename, type) {
-            const blob = new Blob([content], { type });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.setAttribute("href", url);
-            a.setAttribute("download", filename);
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        // Handle download form submit
-        downloadForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            messageDiv.textContent = "";
-
-            const startDate = new Date(startDateInput.value);
-            const endDate = new Date(endDateInput.value);
-            const fileFormat = document.getElementById("fileFormat").value;
-
-            if (endDate < startDate) {
-                messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
-                messageDiv.style.color = "red";
-                return;
-            }
-
-            const filteredData = filterByDate(startDateInput.value, endDateInput.value);
-
-            if (filteredData.length === 0) {
-                messageDiv.textContent = "No data found for the selected range.";
-                messageDiv.style.color = "red";
-                return;
-            }
-
-            if (fileFormat === "csv") {
-                const csv = convertToCSV(filteredData);
-                const bom = "\uFEFF"; // UTF-8 BOM
-                downloadBlob(bom + csv, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.csv`, "text/csv;charset=utf-8;");
-            } else if (fileFormat === "xlsx") {
-                const worksheet = XLSX.utils.json_to_sheet(filteredData);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
-                XLSX.writeFile(workbook, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.xlsx`);
-            }
-
-            messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
-            messageDiv.style.color = "green";
-        });
-
-        // Update search field options depending on president
-        function updateSearchFieldOptions(president) {
-            searchField.innerHTML = ""; // Clear existing options
-            if (president === "lula") {
-                searchField.innerHTML = `
+            // Update search field options depending on president
+            function updateSearchFieldOptions(president) {
+                searchField.innerHTML = ""; // Clear existing options
+                if (president === "lula") {
+                    searchField.innerHTML = `
                 <option value="participantes">Participant</option>
                 <option value="compromisso">Event title</option>
             `;
-            } else if (president === "bolsonaro") {
-                searchField.innerHTML = `
+                } else if (president === "bolsonaro") {
+                    searchField.innerHTML = `
                 <option value="compromisso">Event title</option>
             `;
-            }
-        }
-
-        // Display filtered data in results div
-        function displayFilteredData(data) {
-            if (data.length === 0) {
-                resultsDiv.innerHTML = "<p>No matches found.</p>";
-                return;
+                }
             }
 
-            let tableHeaders = "";
-            let tableRows = "";
+            // Display filtered data in results div
+            function displayFilteredData(data) {
+                if (data.length === 0) {
+                    resultsDiv.innerHTML = "<p>No matches found.</p>";
+                    return;
+                }
 
-            if (currentPresident === 'lula') {
-                tableHeaders = `<th>Date</th><th>Event</th><th>Start</th><th>Location</th><th>Participants</th>`;
-                tableRows = data.map(entry => `
+                let tableHeaders = "";
+                let tableRows = "";
+
+                if (currentPresident === 'lula') {
+                    tableHeaders = `<th>Date</th><th>Event</th><th>Start</th><th>Location</th><th>Participants</th>`;
+                    tableRows = data.map(entry => `
             <tr>
                 <td>${entry.data}</td>
                 <td>${entry.compromisso}</td>
@@ -576,85 +589,85 @@
                 <td>${entry.participantes || ""}</td>
             </tr>
         `).join('');
-            } else {
-                tableHeaders = `<th>Date</th><th>Event</th><th>Time</th>`;
-                tableRows = data.map(entry => `
+                } else {
+                    tableHeaders = `<th>Date</th><th>Event</th><th>Time</th>`;
+                    tableRows = data.map(entry => `
             <tr>
                 <td>${entry.date}</td>
                 <td>${entry.compromisso}</td>
                 <td>${entry.time || ""}</td>
             </tr>
         `).join('');
-            }
+                }
 
-            resultsDiv.innerHTML = `
+                resultsDiv.innerHTML = `
         <table>
             <thead><tr>${tableHeaders}</tr></thead>
             <tbody>${tableRows}</tbody>
         </table>`;
-        }
-
-
-
-        // Handle search input filtering based on selected field
-        searchInput.addEventListener("input", () => {
-            const query = searchInput.value.trim().toLowerCase();
-            const field = searchField.value;
-
-            if (!query) {
-                resultsDiv.innerHTML = "";
-                return;
             }
 
-            const filtered = allData.filter(entry => {
-                const target = (entry[field] || "").toLowerCase();
-                return target.includes(query);
+
+
+            // Handle search input filtering based on selected field
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.trim().toLowerCase();
+                const field = searchField.value;
+
+                if (!query) {
+                    resultsDiv.innerHTML = "";
+                    return;
+                }
+
+                const filtered = allData.filter(entry => {
+                    const target = (entry[field] || "").toLowerCase();
+                    return target.includes(query);
+                });
+
+                displayFilteredData(filtered);
             });
 
-            displayFilteredData(filtered);
-        });
+            // This function will handle the logic for changing a president
+            async function handlePresidentChange(newPresident) {
+                currentPresident = newPresident;
 
-        // This function will handle the logic for changing a president
-        async function handlePresidentChange(newPresident) {
-            currentPresident = newPresident;
+                // Sync both dropdowns
+                presidentSelect.value = newPresident;
+                searchPresident.value = newPresident;
 
-            // Sync both dropdowns
-            presidentSelect.value = newPresident;
-            searchPresident.value = newPresident;
+                // Update UI elements based on the new president
+                updateDateConstraints(newPresident);
+                updateSearchFieldOptions(newPresident);
 
-            // Update UI elements based on the new president
-            updateDateConstraints(newPresident);
-            updateSearchFieldOptions(newPresident);
+                // Load the new data
+                allData = await loadPresidentData(newPresident);
 
-            // Load the new data
-            allData = await loadPresidentData(newPresident);
+                // Reset the search and results area
+                searchInput.value = "";
+                resultsDiv.innerHTML = "";
+                messageDiv.textContent = "";
+            }
 
-            // Reset the search and results area
-            searchInput.value = "";
-            resultsDiv.innerHTML = "";
-            messageDiv.textContent = "";
-        }
+            // Listen for changes on both president dropdowns
+            presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
+            searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
 
-        // Listen for changes on both president dropdowns
-        presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
-        searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+            // On initial page load, set up the page for the default president
+            document.addEventListener("DOMContentLoaded", () => {
+                handlePresidentChange(currentPresident);
 
-        // On initial page load, set up the page for the default president
-        document.addEventListener("DOMContentLoaded", () => {
-            handlePresidentChange(currentPresident);
-
-            // Animate SVG text after a short delay
-            setTimeout(() => {
-                const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
-                idsToAnimate.forEach((id) => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        el.style.opacity = "1";
-                    }
-                });
-            }, 500);
-        });
-    </script>
+                // Animate SVG text after a short delay
+                setTimeout(() => {
+                    const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
+                    idsToAnimate.forEach((id) => {
+                        const el = document.getElementById(id);
+                        if (el) {
+                            el.style.opacity = "1";
+                        }
+                    });
+                }, 500);
+            });
+        </script>
 
 </body>
 
