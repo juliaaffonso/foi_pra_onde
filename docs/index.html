@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- XLSX export -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
     <title>Foi pra onde?</title>
 
-    <!-- CSS and JS files here -->
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 
@@ -110,7 +108,8 @@
         .divider {
             height: 3px;
             background-color: #ccc;
-            margin: 10px 0;
+            margin: 25px 0;
+            /* Adjusted margin */
             width: 100%;
         }
 
@@ -136,10 +135,9 @@
         .controls {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 20px;
+            align-items: flex-end;
+            gap: 15px;
             flex-wrap: wrap;
-            /* Wrap controls on smaller screens */
         }
 
         .date-picker,
@@ -164,6 +162,11 @@
             min-width: 150px;
         }
 
+        .president-selector-container select {
+            min-width: 120px;
+            width: 120px;
+        }
+
         /* Download Button */
         #downloadBtn {
             background-color: #149e59;
@@ -175,8 +178,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 25px;
-            /* Aligns button with inputs */
+            margin-top: 0;
         }
 
         #downloadBtn:hover {
@@ -195,29 +197,34 @@
             min-height: 20px;
         }
 
-        /* Search bar Styling */
-
-        #searchSection {
-            margin-top: 20px;
+        /* Search Section Styling */
+        .search-container {
             text-align: left;
+        }
+
+        .search-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 5px;
         }
 
         #searchInput {
             padding: 10px;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
+            /* Adjusted width */
             font-size: 1rem;
             border-radius: 6px;
             border: 1px solid #ccc;
         }
 
-        /* Result bar Styling */
-
+        /* Results Table Styling */
         #results table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.95rem;
-            margin-top: 20px;
+            margin-top: 5px;
         }
 
         #results th,
@@ -305,11 +312,14 @@
             </div>
 
             <div class="header-text">
-                <h4>This page provides a dataset of all Brazilian presidential meetings since 2023.</h4>
-                <p>(The data is updated daily — but remember to always cross-check it with the
+                <h4>This page provides a dataset of all Brazilian presidential meetings since 2019.</h4>
+                <p>(Data from the current presidential term is updated daily. For full accuracy, always cross-check it
+                    with the
                     <a
                         href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula">official
-                        agenda</a>.)
+                        agenda</a>. Data from previous terms comes from <a
+                        href="https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes"> archived
+                        sources</a>.)
                 </p>
             </div>
         </header>
@@ -321,6 +331,14 @@
 
             <form id="downloadForm">
                 <div class="controls">
+                    <div class="format-selector president-selector-container">
+                        <label for="presidentSelect">President:</label>
+                        <select id="presidentSelect" name="presidentSelect">
+                            <option value="lula">Lula</option>
+                            <option value="bolsonaro">Bolsonaro</option>
+                        </select>
+                    </div>
+
                     <div class="date-picker">
                         <label for="startDate">Start Date:</label>
                         <input type="date" id="startDate" name="startDate" min="2023-01-01" required />
@@ -345,208 +363,266 @@
 
             <div id="message"></div>
         </main>
-        <div class="divider"></div>
-        <section id="searchSection" style="margin-top: 40px; text-align: left;">
-            <h6>Search by:</h6>
-            <select id="searchField"
-                style="padding: 10px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 10px;">
-                <option value="participantes">Participant</option>
-                <option value="compromisso">Event title</option>
-            </select>
 
-            <input type="text" id="searchInput" placeholder="Type a name or event..."
-                style="padding: 10px; width: 100%; max-width: 400px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc;">
-            <div id="results" style="margin-top: 20px;"></div>
-        </section>
+        <div class="divider"></div>
+
+        <div class="search-container">
+            <h6>Search the agendas:</h6>
+            <div class="search-controls">
+                <div class="format-selector">
+                    <label for="searchPresident">President:</label>
+                    <select id="searchPresident">
+                        <option value="lula">Lula</option>
+                        <option value="bolsonaro">Bolsonaro</option>
+                    </select>
+                </div>
+                <div class="format-selector">
+                    <label for="searchField">Search by:</label>
+                    <select id="searchField"></select>
+                </div>
+            </div>
+            <input type="text" id="searchInput" placeholder="Type a name or event...">
+        </div>
+        <div id="results"></div>
 
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const startDateInput = document.getElementById("startDate");
-            const endDateInput = document.getElementById("endDate");
-            const downloadForm = document.getElementById("downloadForm");
-            const messageDiv = document.getElementById("message");
-            const searchInput = document.getElementById("searchInput");
-            const searchField = document.getElementById("searchField");
-            const resultsDiv = document.getElementById("results");
+        let allData = [];
+        let currentPresident = "lula";
 
-            let allData = [];      // All data loaded from JSON
-            let filteredData = []; // Data filtered by date (updated on form submit)
+        const startDateInput = document.getElementById("startDate");
+        const endDateInput = document.getElementById("endDate");
+        const downloadForm = document.getElementById("downloadForm");
+        const messageDiv = document.getElementById("message");
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+        const presidentSelect = document.getElementById("presidentSelect");
+        const searchPresident = document.getElementById("searchPresident");
+        const searchField = document.getElementById("searchField");
 
-            const today = new Date().toISOString().split("T")[0];
+        // Function to update date input constraints based on president
+        function updateDateConstraints(president) {
+            const today = new Date().toISOString().slice(0, 10);
+            if (president === "lula") {
+                startDateInput.min = "2023-01-01";
+                startDateInput.max = today;
+                endDateInput.min = "2023-01-01";
+                endDateInput.max = today;
 
-            // Set default and max dates
-            startDateInput.value = "2023-01-01";
-            endDateInput.value = today;
-            startDateInput.min = "2023-01-01";
-            endDateInput.min = "2023-01-01";
-            startDateInput.max = today;
-            endDateInput.max = today;
+                if (startDateInput.value < startDateInput.min || !startDateInput.value) startDateInput.value = startDateInput.min;
+                if (startDateInput.value > startDateInput.max) startDateInput.value = startDateInput.max;
+                if (endDateInput.value < endDateInput.min || !endDateInput.value) endDateInput.value = endDateInput.min;
+                if (endDateInput.value > endDateInput.max) endDateInput.value = endDateInput.max;
+            } else if (president === "bolsonaro") {
+                startDateInput.min = "2019-01-01";
+                startDateInput.max = "2022-12-31";
+                endDateInput.min = "2019-01-01";
+                endDateInput.max = "2022-12-31";
 
-            // Enforce calendar to open starting at min date
-            const enforceMinDateView = (inputElement, minDate) => {
-                inputElement.addEventListener("click", () => {
-                    if (!inputElement.value || new Date(inputElement.value) < new Date(minDate)) {
-                        inputElement.value = minDate;
-                        inputElement.dispatchEvent(new Event('input'));
-                    }
-                });
-            };
-
-            enforceMinDateView(startDateInput, "2023-01-01");
-            enforceMinDateView(endDateInput, "2023-01-01");
-
-            // Load data once on page load
-            fetch("data/all_data.json")
-                .then(res => res.json())
-                .then(json => {
-                    allData = json;
-                    // Initially filter data by default dates so search has data
-                    filterByDateAndUpdate(startDateInput.value, endDateInput.value);
-                })
-                .catch(err => {
-                    console.error("Failed to fetch initial data:", err);
-                    messageDiv.textContent = "Failed to load data.";
-                    messageDiv.style.color = "red";
-                });
-
-            // Function to filter data by date and update filteredData
-            function filterByDateAndUpdate(start, end) {
-                const startDate = new Date(start);
-                const endDate = new Date(end);
-
-                filteredData = allData.filter(entry => {
-                    const entryDate = new Date(entry.data);
-                    return entryDate >= startDate && entryDate <= endDate;
-                });
+                if (startDateInput.value < startDateInput.min || startDateInput.value > "2022-12-31") startDateInput.value = startDateInput.min;
+                if (endDateInput.value < endDateInput.min || endDateInput.value > "2022-12-31") endDateInput.value = endDateInput.max;
             }
+        }
 
-            // Handle download form submit
-            downloadForm.addEventListener("submit", async (event) => {
-                event.preventDefault();
+        // Load JSON for the selected president
+        async function loadPresidentData(president) {
+            messageDiv.textContent = "Loading data...";
+            let fileName = "";
+            if (president === "lula") {
+                fileName = "all_data.json";
+            } else if (president === "bolsonaro") {
+                fileName = "bolsonaro_agenda.json";
+            }
+            try {
+                const response = await fetch(`data/${fileName}`);
+                if (!response.ok) throw new Error("Network response was not ok.");
+                const data = await response.json();
                 messageDiv.textContent = "";
+                return data;
+            } catch (error) {
+                messageDiv.textContent = `Error loading data: ${error.message}`;
+                messageDiv.style.color = "red";
+                return [];
+            }
+        }
 
-                const startDate = startDateInput.value;
-                const endDate = endDateInput.value;
-                const fileFormat = document.getElementById("fileFormat").value;
-
-                if (new Date(endDate) < new Date(startDate)) {
-                    messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
-                    messageDiv.style.color = "red";
-                    return;
-                }
-
-                messageDiv.textContent = "Fetching and filtering data...";
-                messageDiv.style.color = "black";
-
-                try {
-                    // Since data already loaded, no need to fetch again — just filter
-                    filterByDateAndUpdate(startDate, endDate);
-
-                    if (filteredData.length === 0) {
-                        messageDiv.textContent = "No data found in that date range.";
-                        messageDiv.style.color = "orange";
-                        resultsDiv.innerHTML = "";  // Clear search results as well
-                        return;
-                    }
-
-                    const filename = `presidential_agenda_${startDate}_to_${endDate}.${fileFormat}`;
-
-                    if (fileFormat === "csv") {
-                        const csv = convertToCSV(filteredData);
-                        const bom = "\uFEFF";  // UTF-8 Byte Order Mark
-                        const blob = new Blob([bom + csv], { type: "text/csv;charset=utf-8;" });
-                        triggerDownload(blob, filename);
-                    } else if (fileFormat === "xlsx") {
-                        const ws = XLSX.utils.json_to_sheet(filteredData);
-                        const wb = XLSX.utils.book_new();
-                        XLSX.utils.book_append_sheet(wb, ws, "Agenda");
-                        XLSX.writeFile(wb, filename);
-                    }
-
-                    messageDiv.textContent = `Download ready: ${filename}`;
-                    messageDiv.style.color = "green";
-
-                } catch (err) {
-                    console.error(err);
-                    messageDiv.textContent = "Failed to process data.";
-                    messageDiv.style.color = "red";
-                }
+        // Filter data by date range
+        function filterByDate(start, end) {
+            return allData.filter(entry => {
+                return entry.data >= start && entry.data <= end;
             });
+        }
 
-            // Search input event — filter current filteredData by search query and selected field
-            searchInput.addEventListener("input", () => {
-                const query = searchInput.value.trim().toLowerCase();
-                const field = searchField.value; // participantes or compromisso
-
-                if (!query) {
-                    resultsDiv.innerHTML = "";
-                    return;
-                }
-
-                const filtered = filteredData.filter(entry => {
-                    const target = (entry[field] || "").toLowerCase();
-                    return target.includes(query);
-                });
-
-                if (filtered.length === 0) {
-                    resultsDiv.innerHTML = "<p>No matches found.</p>";
-                    return;
-                }
-
-                const html = `
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Event</th>
-              <th>Start</th>
-              <th>Location</th>
-              <th>Participants</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${filtered.map(entry => `
-              <tr>
-                <td>${entry.data}</td>
-                <td>${entry.compromisso}</td>
-                <td>${entry.inicio}</td>
-                <td>${entry.local}</td>
-                <td>${entry.participantes}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-        `;
-                resultsDiv.innerHTML = html;
+        // Convert array to CSV string
+        function convertToCSV(data) {
+            if (data.length === 0) return "";
+            const headers = Object.keys(data[0]);
+            const csvRows = [headers.join(",")];
+            data.forEach(row => {
+                const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
+                csvRows.push(values.join(","));
             });
+            return csvRows.join("\n");
+        }
 
-            function convertToCSV(data) {
-                const keys = Object.keys(data[0]);
-                const rows = data.map(obj => keys.map(k => `"${(obj[k] ?? "").toString().replace(/"/g, '""')}"`).join(","));
-                return [keys.join(","), ...rows].join("\n");
+        // Trigger file download
+        function downloadBlob(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.setAttribute("href", url);
+            a.setAttribute("download", filename);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Handle download form submit
+        downloadForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            messageDiv.textContent = "";
+
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const fileFormat = document.getElementById("fileFormat").value;
+
+            if (endDate < startDate) {
+                messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
+                messageDiv.style.color = "red";
+                return;
             }
 
-            function triggerDownload(blob, filename) {
-                const link = document.createElement("a");
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+            const filteredData = filterByDate(startDateInput.value, endDateInput.value);
+
+            if (filteredData.length === 0) {
+                messageDiv.textContent = "No data found for the selected range.";
+                messageDiv.style.color = "red";
+                return;
             }
 
-            // Animate SVG text
-            setTimeout(() => {
-                ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"].forEach((id) => {
-                    const el = document.getElementById(id);
-                    if (el) el.style.opacity = "1";
-                });
-            }, 500);
+            if (fileFormat === "csv") {
+                const csv = convertToCSV(filteredData);
+                const bom = "\uFEFF"; // UTF-8 BOM
+                downloadBlob(bom + csv, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.csv`, "text/csv;charset=utf-8;");
+            } else if (fileFormat === "xlsx") {
+                const worksheet = XLSX.utils.json_to_sheet(filteredData);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
+                XLSX.writeFile(workbook, `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}.xlsx`);
+            }
 
+            messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
+            messageDiv.style.color = "green";
         });
 
+        // Update search field options depending on president
+        function updateSearchFieldOptions(president) {
+            searchField.innerHTML = ""; // Clear existing options
+            if (president === "lula") {
+                searchField.innerHTML = `
+                <option value="participantes">Participant</option>
+                <option value="compromisso">Event title</option>
+            `;
+            } else if (president === "bolsonaro") {
+                searchField.innerHTML = `
+                <option value="compromisso">Event title</option>
+            `;
+            }
+        }
+
+        // Display filtered data in results div
+        function displayFilteredData(data) {
+            if (data.length === 0) {
+                resultsDiv.innerHTML = "<p>No matches found.</p>";
+                return;
+            }
+            const tableHeaders = currentPresident === 'lula' ?
+                `<th>Date</th><th>Event</th><th>Start</th><th>Location</th><th>Participants</th>` :
+                `<th>Date</th><th>Event</th><th>Start</th><th>Location</th>`;
+
+            const tableRows = data.map(entry => {
+                const participantsCell = currentPresident === 'lula' ? `<td>${entry.participantes || ""}</td>` : '';
+                return `
+                    <tr>
+                        <td>${entry.data}</td>
+                        <td>${entry.compromisso}</td>
+                        <td>${entry.inicio || ""}</td>
+                        <td>${entry.local || ""}</td>
+                        ${participantsCell}
+                    </tr>
+                `;
+            }).join('');
+
+            resultsDiv.innerHTML = `
+            <table>
+                <thead>
+                    <tr>${tableHeaders}</tr>
+                </thead>
+                <tbody>${tableRows}</tbody>
+            </table>`;
+        }
+
+
+        // Handle search input filtering based on selected field
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.trim().toLowerCase();
+            const field = searchField.value;
+
+            if (!query) {
+                resultsDiv.innerHTML = "";
+                return;
+            }
+
+            const filtered = allData.filter(entry => {
+                const target = (entry[field] || "").toLowerCase();
+                return target.includes(query);
+            });
+
+            displayFilteredData(filtered);
+        });
+
+        // This function will handle the logic for changing a president
+        async function handlePresidentChange(newPresident) {
+            currentPresident = newPresident;
+
+            // Sync both dropdowns
+            presidentSelect.value = newPresident;
+            searchPresident.value = newPresident;
+
+            // Update UI elements based on the new president
+            updateDateConstraints(newPresident);
+            updateSearchFieldOptions(newPresident);
+
+            // Load the new data
+            allData = await loadPresidentData(newPresident);
+
+            // Reset the search and results area
+            searchInput.value = "";
+            resultsDiv.innerHTML = "";
+            messageDiv.textContent = "";
+        }
+
+        // Listen for changes on both president dropdowns
+        presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
+        searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+
+        // On initial page load, set up the page for the default president
+        document.addEventListener("DOMContentLoaded", () => {
+            handlePresidentChange(currentPresident);
+
+            // Animate SVG text after a short delay
+            setTimeout(() => {
+                const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
+                idsToAnimate.forEach((id) => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.style.opacity = "1";
+                    }
+                });
+            }, 500);
+        });
     </script>
 
 </body>
