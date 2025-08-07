@@ -623,6 +623,14 @@
                     return target.includes(query);
                 });
 
+                // Determine the correct key for the date based on the current president
+                const dateKey = currentPresident === 'lula' ? 'data' : 'date';
+
+                // Sort the filtered array by date in descending order (newest first)
+                filtered.sort((a, b) => b[dateKey].localeCompare(a[dateKey]));
+                // -----------------------
+
+
                 displayFilteredData(filtered);
             });
 
