@@ -424,11 +424,12 @@
                     ],
                     // Defines the columns for the results table
                     displayColumns: [
+                        { header: "URL", key: "url" },
                         { header: "Data", key: "data" },
-                        { header: "Evento", key: "compromisso" },
+                        { header: "Agenda", key: "compromisso" },
                         { header: "Horário", key: "inicio" },
-                        { header: "Location", key: "local" },
-                        { header: "Participants", key: "participantes" }
+                        { header: "Local", key: "local" },
+                        { header: "Participantes", key: "participantes" }
                     ]
                 },
                 "bolsonaro": {
@@ -440,9 +441,10 @@
                         { value: "compromisso", text: "Compromisso" }
                     ],
                     displayColumns: [
+                        { header: "URL", key: "url" },
                         { header: "Data", key: "date" },
-                        { header: "Agenda", key: "compromisso" },
-                        { header: "Horário", key: "time" }
+                        { header: "Horário", key: "time" },
+                        { header: "Agenda", key: "compromisso" }
                     ]
                 },
                 "temer": {
@@ -454,9 +456,11 @@
                         { value: "description", text: "Compromisso" }
                     ],
                     displayColumns: [
+                        { header: "URL", key: "url" },
                         { header: "Data", key: "date" },
+                        { header: "Horário", key: "time" },
                         { header: "Agenda", key: "description" },
-                        { header: "Horário", key: "time" }
+                        { header: "Local", key: "location" }
                     ]
                 }
             };
