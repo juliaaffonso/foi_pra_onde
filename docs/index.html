@@ -421,13 +421,11 @@
                     searchFields: [
                         { value: "participantes", text: "Participantes" },
                         { value: "compromisso", text: "Reunião" },
-                        { value: "description", text: "Reunião" }
                     ],
                     // Defines the columns for the results table
                     displayColumns: [
                         { header: "Data", key: "data" },
-                        { header: "Data", key: "date" },
-                        { header: "Event", key: "compromisso" },
+                        { header: "Evento", key: "compromisso" },
                         { header: "Horário", key: "inicio" },
                         { header: "Location", key: "local" },
                         { header: "Participants", key: "participantes" }
@@ -439,12 +437,12 @@
                     fileName: "bolsonaro_agenda.json",
                     dateKey: "date",
                     searchFields: [
-                        { value: "compromisso", text: "Event title" }
+                        { value: "compromisso", text: "Compromisso" }
                     ],
                     displayColumns: [
-                        { header: "Date", key: "date" },
-                        { header: "Event", key: "compromisso" },
-                        { header: "Time", key: "time" }
+                        { header: "Data", key: "date" },
+                        { header: "Agenda", key: "compromisso" },
+                        { header: "Horário", key: "time" }
                     ]
                 },
                 "temer": {
@@ -456,9 +454,9 @@
                         { value: "description", text: "Compromisso" }
                     ],
                     displayColumns: [
-                        { header: "Date", key: "date" },
-                        { header: "Event", key: "description" },
-                        { header: "Time", key: "time" }
+                        { header: "Data", key: "date" },
+                        { header: "Agenda", key: "description" },
+                        { header: "Horário", key: "time" }
                     ]
                 }
             };
