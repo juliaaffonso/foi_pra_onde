@@ -408,7 +408,6 @@
             // CONFIGURATION
             // =================================================================
             // This is the single source of truth for all president-specific settings.
-            // To add a new president, just add a new entry here!
             const presidentConfig = {
                 "lula": {
                     // Date settings for the download form
@@ -420,14 +419,16 @@
                     dateKey: "data",
                     // Options for the search field dropdown
                     searchFields: [
-                        { value: "participantes", text: "Participant" },
-                        { value: "compromisso", text: "Event title" }
+                        { value: "participantes", text: "Participantes" },
+                        { value: "compromisso", text: "Reunião" },
+                        { value: "description", text: "Reunião" }
                     ],
                     // Defines the columns for the results table
                     displayColumns: [
-                        { header: "Date", key: "data" },
+                        { header: "Data", key: "data" },
+                        { header: "Data", key: "date" },
                         { header: "Event", key: "compromisso" },
-                        { header: "Start", key: "inicio" },
+                        { header: "Horário", key: "inicio" },
                         { header: "Location", key: "local" },
                         { header: "Participants", key: "participantes" }
                     ]
@@ -452,7 +453,7 @@
                     fileName: "temer_agenda.json",
                     dateKey: "date",
                     searchFields: [
-                        { value: "compromisso", text: "Event title" }
+                        { value: "description", text: "Compromisso" }
                     ],
                     displayColumns: [
                         { header: "Date", key: "date" },
