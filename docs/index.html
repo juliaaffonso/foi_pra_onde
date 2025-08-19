@@ -9,6 +9,20 @@
     <title>Foi pra onde?</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RD9PQ2CF9F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RD9PQ2CF9F');
+    </script>
+
+    <!-- Load D3 from CDN -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
     <script defer src="script.js"></script>
 
     <style>
@@ -347,7 +361,8 @@
                         <select id="presidentSelect" name="presidentSelect">
                             <option value="lula">Lula</option>
                             <option value="bolsonaro">Bolsonaro</option>
-                            <option value="temer">Temer</option> </select>
+                            <option value="temer">Temer</option>
+                        </select>
                         </select>
                     </div>
 
@@ -386,7 +401,8 @@
                     <select id="searchPresident">
                         <option value="lula">Lula</option>
                         <option value="bolsonaro">Bolsonaro</option>
-                        <option value="temer">Temer</option> </select>
+                        <option value="temer">Temer</option>
+                    </select>
                     </select>
                 </div>
                 <div class="format-selector">
