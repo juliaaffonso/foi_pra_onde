@@ -362,6 +362,7 @@
                             <option value="lula">Lula</option>
                             <option value="bolsonaro">Bolsonaro</option>
                             <option value="temer">Temer</option>
+                            <option value="dilma">Dilma</option>
                         </select>
                         </select>
                     </div>
@@ -402,6 +403,7 @@
                         <option value="lula">Lula</option>
                         <option value="bolsonaro">Bolsonaro</option>
                         <option value="temer">Temer</option>
+                        <option value="dilma">Dilma</option>
                     </select>
                     </select>
                 </div>
@@ -464,7 +466,7 @@
                     ]
                 },
                 "temer": {
-                    minDate: "2016-08-31",
+                    minDate: "2016-05-01",
                     maxDate: "2018-12-31",
                     fileName: "temer_agenda.json",
                     dateKey: "date",
@@ -477,6 +479,23 @@
                         { header: "Horário", key: "time" },
                         { header: "Agenda", key: "description" },
                         { header: "Local", key: "location" }
+                    ]
+                }
+                "dilma": {
+                    minDate: "2011-01-01",
+                    maxDate: "2016-06-01",
+                    fileName: "agenda_dilma_final.json",
+                    dateKey: "date",
+                    searchFields: [
+                        { value: "description", text: "Compromisso" }
+                    ],
+                    displayColumns: [
+                        { header: "URL", key: "url" },
+                        { header: "Data", key: "data" },
+                        { header: "Horário", key: "horario" },
+                        { header: "Agenda", key: "compromisso" },
+                        { header: "Cargo", key: "cargo" },
+                        { header: "Local", key: "local" }
                     ]
                 }
             };
