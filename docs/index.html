@@ -264,6 +264,53 @@
             background-color: #f0f0f0;
             font-weight: bold;
         }
+
+        /* Add this for smooth scrolling on the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Styling for the button container */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Styling for the new navigation buttons */
+        .nav-btn {
+            background-color: #f0f0f0;
+            /* A neutral background */
+            color: #333;
+            /* Dark text */
+            padding: 12px 25px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            /* Removes underline from links */
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect to make them interactive */
+        .nav-btn:hover {
+            background-color: #149e59;
+            /* Green on hover */
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the new placeholder sections */
+        .content-section {
+            padding-top: 20px;
+            min-height: 200px;
+            /* Ensures the section has some height for scrolling */
+        }
     </style>
 </head>
 
@@ -349,9 +396,16 @@
             </div>
         </header>
 
+        <div class="navigation-buttons">
+            <a href="#download-section" class="nav-btn">Download 📥</a>
+            <a href="#search-section" class="nav-btn">Search 🔎</a>
+            <a href="#quiz-section" class="nav-btn">Quiz ❓</a>
+            <a href="#dataviz-section" class="nav-btn">DataViz 📊</a>
+        </div>
+
         <div class="divider"></div>
 
-        <main>
+        <main id="download-section">
             <h6>Choose the dates, pick a format, and hit the green button below. ⬇</h6>
 
             <form id="downloadForm">
@@ -393,7 +447,7 @@
 
         <div class="divider"></div>
 
-        <div class="search-container">
+        <div id="search-section" class="search-container">
             <h6>Search here 🔎</h6>
             <div class="search-controls">
                 <div class="format-selector">
@@ -418,6 +472,20 @@
         </div>
 
         <div id="results"></div>
+
+        <div class="divider"></div>
+
+        <div id="quiz-section" class="content-section">
+            <h2>Quiz Section</h2>
+            <p>This area will contain the interactive quiz. (Content coming soon!)</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="dataviz-section" class="content-section">
+            <h2>Data Visualization Section</h2>
+            <p>This area will feature charts and graphs. (Content coming soon!)</p>
+        </div>
 
         <script>
             // =================================================================
@@ -741,6 +809,8 @@
                     });
                 }, 500);
             });
+
+
         </script>
 </body>
 
