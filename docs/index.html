@@ -311,6 +311,25 @@
             min-height: 200px;
             /* Ensures the section has some height for scrolling */
         }
+
+        /* Styling for the bubble chart tooltip */
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: auto;
+            height: auto;
+            padding: 8px;
+            font: 12px sans-serif;
+            background: #333;
+            color: white;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+            /* Allows mouse events to pass through to the circle */
+            opacity: 0;
+            /* Initially hidden */
+            transition: opacity 0.2s;
+        }
     </style>
 </head>
 
@@ -483,335 +502,438 @@
         <div class="divider"></div>
 
         <div id="dataviz-section" class="content-section">
-            <h2>Data Visualization Section</h2>
-            <p>This area will feature charts and graphs. (Content coming soon!)</p>
+            <h2>Data Visualization</h2>
+            h4>Presidential Meetings Comparison</h4>
+            <div id="bubble-chart-container"></div>
         </div>
+    </div>
 
-        <script>
-            // =================================================================
-            // CONFIGURATION
-            // =================================================================
-            // This is the single source of truth for all president-specific settings.
-            const presidentConfig = {
-                "lula": {
-                    // Date settings for the download form
-                    minDate: "2023-01-01",
-                    maxDate: new Date().toISOString().slice(0, 10), // Today's date
-                    // Data file name
-                    fileName: "all_data.json",
-                    // The key in the JSON file that holds the date value
-                    dateKey: "data",
-                    // Options for the search field dropdown
-                    searchFields: [
-                        { value: "participantes", text: "Participantes" },
-                        { value: "compromisso", text: "Reunião" },
-                    ],
-                    // Defines the columns for the results table
-                    displayColumns: [
-                        { header: "URL", key: "url" },
-                        { header: "Data", key: "data" },
-                        { header: "Agenda", key: "compromisso" },
-                        { header: "Horário", key: "inicio" },
-                        { header: "Local", key: "local" },
-                        { header: "Participantes", key: "participantes" }
-                    ]
-                },
-                "bolsonaro": {
-                    minDate: "2019-01-01",
-                    maxDate: "2022-12-31",
-                    fileName: "bolsonaro_agenda.json",
-                    dateKey: "date",
-                    searchFields: [
-                        { value: "compromisso", text: "Compromisso" }
-                    ],
-                    displayColumns: [
-                        { header: "URL", key: "url" },
-                        { header: "Data", key: "date" },
-                        { header: "Horário", key: "time" },
-                        { header: "Agenda", key: "compromisso" }
-                    ]
-                },
-                "temer": {
-                    minDate: "2016-05-01",
-                    maxDate: "2018-12-31",
-                    fileName: "temer_agenda.json",
-                    dateKey: "date",
-                    searchFields: [
-                        { value: "description", text: "Compromisso" }
-                    ],
-                    displayColumns: [
-                        { header: "URL", key: "url" },
-                        { header: "Data", key: "date" },
-                        { header: "Horário", key: "time" },
-                        { header: "Agenda", key: "description" },
-                        { header: "Local", key: "location" }
-                    ]
-                },
-                "dilma": {
-                    minDate: "2011-01-01",
-                    maxDate: "2016-06-01",
-                    fileName: "agenda_dilma_final.json",
-                    dateKey: "data",
-                    searchFields: [
-                        { value: "compromisso", text: "Compromisso" }
-                    ],
-                    displayColumns: [
-                        { header: "URL", key: "url" },
-                        { header: "Data", key: "data" },
-                        { header: "Horário", key: "horario" },
-                        { header: "Agenda", key: "compromisso" },
-                        { header: "Cargo", key: "cargo" },
-                        { header: "Local", key: "local" }
-                    ]
-                }
-            };
+    <script>
+        // =================================================================
+        // CONFIGURATION
+        // =================================================================
+        // This is the single source of truth for all president-specific settings.
+        const presidentConfig = {
+            "lula": {
+                // Date settings for the download form
+                minDate: "2023-01-01",
+                maxDate: new Date().toISOString().slice(0, 10), // Today's date
+                // Data file name
+                fileName: "all_data.json",
+                // The key in the JSON file that holds the date value
+                dateKey: "data",
+                // Options for the search field dropdown
+                searchFields: [
+                    { value: "participantes", text: "Participantes" },
+                    { value: "compromisso", text: "Reunião" },
+                ],
+                // Defines the columns for the results table
+                displayColumns: [
+                    { header: "URL", key: "url" },
+                    { header: "Data", key: "data" },
+                    { header: "Agenda", key: "compromisso" },
+                    { header: "Horário", key: "inicio" },
+                    { header: "Local", key: "local" },
+                    { header: "Participantes", key: "participantes" }
+                ]
+            },
+            "bolsonaro": {
+                minDate: "2019-01-01",
+                maxDate: "2022-12-31",
+                fileName: "bolsonaro_agenda.json",
+                dateKey: "date",
+                searchFields: [
+                    { value: "compromisso", text: "Compromisso" }
+                ],
+                displayColumns: [
+                    { header: "URL", key: "url" },
+                    { header: "Data", key: "date" },
+                    { header: "Horário", key: "time" },
+                    { header: "Agenda", key: "compromisso" }
+                ]
+            },
+            "temer": {
+                minDate: "2016-05-01",
+                maxDate: "2018-12-31",
+                fileName: "temer_agenda.json",
+                dateKey: "date",
+                searchFields: [
+                    { value: "description", text: "Compromisso" }
+                ],
+                displayColumns: [
+                    { header: "URL", key: "url" },
+                    { header: "Data", key: "date" },
+                    { header: "Horário", key: "time" },
+                    { header: "Agenda", key: "description" },
+                    { header: "Local", key: "location" }
+                ]
+            },
+            "dilma": {
+                minDate: "2011-01-01",
+                maxDate: "2016-06-01",
+                fileName: "agenda_dilma_final.json",
+                dateKey: "data",
+                searchFields: [
+                    { value: "compromisso", text: "Compromisso" }
+                ],
+                displayColumns: [
+                    { header: "URL", key: "url" },
+                    { header: "Data", key: "data" },
+                    { header: "Horário", key: "horario" },
+                    { header: "Agenda", key: "compromisso" },
+                    { header: "Cargo", key: "cargo" },
+                    { header: "Local", key: "local" }
+                ]
+            }
+        };
 
-            // =================================================================
-            // GLOBAL VARIABLES & DOM ELEMENTS
-            // =================================================================
-            let allData = [];
-            let currentPresident = "lula"; // Default president on page load
+        // =================================================================
+        // GLOBAL VARIABLES & DOM ELEMENTS
+        // =================================================================
+        let allData = [];
+        let currentPresident = "lula"; // Default president on page load
 
-            const startDateInput = document.getElementById("startDate");
-            const endDateInput = document.getElementById("endDate");
-            const downloadForm = document.getElementById("downloadForm");
-            const messageDiv = document.getElementById("message");
-            const searchInput = document.getElementById("searchInput");
-            const resultsDiv = document.getElementById("results");
-            const presidentSelect = document.getElementById("presidentSelect");
-            const searchPresident = document.getElementById("searchPresident");
-            const searchField = document.getElementById("searchField");
+        const startDateInput = document.getElementById("startDate");
+        const endDateInput = document.getElementById("endDate");
+        const downloadForm = document.getElementById("downloadForm");
+        const messageDiv = document.getElementById("message");
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+        const presidentSelect = document.getElementById("presidentSelect");
+        const searchPresident = document.getElementById("searchPresident");
+        const searchField = document.getElementById("searchField");
 
-            // =================================================================
-            // FUNCTIONS
-            // =================================================================
+        // =================================================================
+        // FUNCTIONS
+        // =================================================================
 
-            /**
-             * Updates the date input constraints based on the selected president's term.
-             */
-            function updateDateConstraints(president) {
-                const config = presidentConfig[president];
-                if (!config) return;
+        /**
+         * Updates the date input constraints based on the selected president's term.
+         */
+        function updateDateConstraints(president) {
+            const config = presidentConfig[president];
+            if (!config) return;
 
-                startDateInput.min = config.minDate;
-                startDateInput.max = config.maxDate;
-                endDateInput.min = config.minDate;
-                endDateInput.max = config.maxDate;
+            startDateInput.min = config.minDate;
+            startDateInput.max = config.maxDate;
+            endDateInput.min = config.minDate;
+            endDateInput.max = config.maxDate;
 
-                if (!startDateInput.value || startDateInput.value < config.minDate || startDateInput.value > config.maxDate) {
-                    startDateInput.value = config.minDate;
-                }
-                if (!endDateInput.value || endDateInput.value < config.minDate || endDateInput.value > config.maxDate) {
-                    endDateInput.value = config.maxDate;
-                }
+            if (!startDateInput.value || startDateInput.value < config.minDate || startDateInput.value > config.maxDate) {
+                startDateInput.value = config.minDate;
+            }
+            if (!endDateInput.value || endDateInput.value < config.minDate || endDateInput.value > config.maxDate) {
+                endDateInput.value = config.maxDate;
+            }
+        }
+
+        /**
+         * Loads the JSON data file for the selected president.
+         */
+        async function loadPresidentData(president) {
+            messageDiv.textContent = "Loading data...";
+            const config = presidentConfig[president];
+            if (!config || !config.fileName) {
+                messageDiv.textContent = `Error: Configuration or file for ${president} not found.`;
+                messageDiv.style.color = "red";
+                return [];
             }
 
-            /**
-             * Loads the JSON data file for the selected president.
-             */
-            async function loadPresidentData(president) {
-                messageDiv.textContent = "Loading data...";
-                const config = presidentConfig[president];
-                if (!config || !config.fileName) {
-                    messageDiv.textContent = `Error: Configuration or file for ${president} not found.`;
-                    messageDiv.style.color = "red";
-                    return [];
-                }
+            try {
+                const response = await fetch(`data/${config.fileName}`);
+                if (!response.ok) throw new Error("Network response was not ok.");
+                const data = await response.json();
+                messageDiv.textContent = "";
+                return data;
+            } catch (error) {
+                messageDiv.textContent = `Error loading data: ${error.message}`;
+                messageDiv.style.color = "red";
+                return [];
+            }
+        }
 
-                try {
-                    const response = await fetch(`data/${config.fileName}`);
-                    if (!response.ok) throw new Error("Network response was not ok.");
-                    const data = await response.json();
-                    messageDiv.textContent = "";
-                    return data;
-                } catch (error) {
-                    messageDiv.textContent = `Error loading data: ${error.message}`;
-                    messageDiv.style.color = "red";
-                    return [];
-                }
+        /**
+         * Filters the global `allData` array by a given date range.
+         */
+        function filterByDate(start, end) {
+            const { dateKey } = presidentConfig[currentPresident];
+            return allData.filter(entry => {
+                const entryDate = entry[dateKey];
+                return entryDate >= start && entryDate <= end;
+            });
+        }
+
+        /**
+         * Converts an array of objects to a CSV string.
+         */
+        function convertToCSV(data) {
+            if (data.length === 0) return "";
+            const headers = Object.keys(data[0]);
+            const csvRows = [headers.join(",")];
+            data.forEach(row => {
+                const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
+                csvRows.push(values.join(","));
+            });
+            return csvRows.join("\n");
+        }
+
+        /**
+         * Triggers a browser download for a blob of content.
+         */
+        function downloadBlob(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        /**
+         * Populates the search field dropdown with options for the selected president.
+         */
+        function updateSearchFieldOptions(president) {
+            searchField.innerHTML = ""; // Clear existing options
+            const config = presidentConfig[president];
+            if (!config) return;
+
+            config.searchFields.forEach(field => {
+                const option = document.createElement("option");
+                option.value = field.value;
+                option.textContent = field.text;
+                searchField.appendChild(option);
+            });
+        }
+
+        /**
+         * Displays filtered data in a dynamically generated table in the results div.
+         */
+        function displayFilteredData(data) {
+            if (data.length === 0) {
+                resultsDiv.innerHTML = "<p>No matches found.</p>";
+                return;
             }
 
-            /**
-             * Filters the global `allData` array by a given date range.
-             */
-            function filterByDate(start, end) {
-                const { dateKey } = presidentConfig[currentPresident];
-                return allData.filter(entry => {
-                    const entryDate = entry[dateKey];
-                    return entryDate >= start && entryDate <= end;
-                });
-            }
+            const config = presidentConfig[currentPresident];
+            if (!config) return;
 
-            /**
-             * Converts an array of objects to a CSV string.
-             */
-            function convertToCSV(data) {
-                if (data.length === 0) return "";
-                const headers = Object.keys(data[0]);
-                const csvRows = [headers.join(",")];
-                data.forEach(row => {
-                    const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
-                    csvRows.push(values.join(","));
-                });
-                return csvRows.join("\n");
-            }
+            const tableHeaders = config.displayColumns.map(col => `<th>${col.header}</th>`).join('');
+            const tableRows = data.map(entry => {
+                const cells = config.displayColumns.map(col => `<td>${entry[col.key] || ""}</td>`).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
 
-            /**
-             * Triggers a browser download for a blob of content.
-             */
-            function downloadBlob(content, filename, type) {
-                const blob = new Blob([content], { type });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement("a");
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }
-
-            /**
-             * Populates the search field dropdown with options for the selected president.
-             */
-            function updateSearchFieldOptions(president) {
-                searchField.innerHTML = ""; // Clear existing options
-                const config = presidentConfig[president];
-                if (!config) return;
-
-                config.searchFields.forEach(field => {
-                    const option = document.createElement("option");
-                    option.value = field.value;
-                    option.textContent = field.text;
-                    searchField.appendChild(option);
-                });
-            }
-
-            /**
-             * Displays filtered data in a dynamically generated table in the results div.
-             */
-            function displayFilteredData(data) {
-                if (data.length === 0) {
-                    resultsDiv.innerHTML = "<p>No matches found.</p>";
-                    return;
-                }
-
-                const config = presidentConfig[currentPresident];
-                if (!config) return;
-
-                const tableHeaders = config.displayColumns.map(col => `<th>${col.header}</th>`).join('');
-                const tableRows = data.map(entry => {
-                    const cells = config.displayColumns.map(col => `<td>${entry[col.key] || ""}</td>`).join('');
-                    return `<tr>${cells}</tr>`;
-                }).join('');
-
-                resultsDiv.innerHTML = `
+            resultsDiv.innerHTML = `
             <table>
                 <thead><tr>${tableHeaders}</tr></thead>
                 <tbody>${tableRows}</tbody>
             </table>`;
+        }
+
+        /**
+         * Handles the logic for changing the current president.
+         */
+        async function handlePresidentChange(newPresident) {
+            currentPresident = newPresident;
+            presidentSelect.value = newPresident;
+            searchPresident.value = newPresident;
+
+            updateDateConstraints(newPresident);
+            updateSearchFieldOptions(newPresident);
+            allData = await loadPresidentData(newPresident);
+
+            searchInput.value = "";
+            resultsDiv.innerHTML = "";
+            messageDiv.textContent = "";
+        }
+
+        // =================================================================
+        // EVENT LISTENERS
+        // =================================================================
+
+        downloadForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            messageDiv.textContent = "";
+
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const fileFormat = document.getElementById("fileFormat").value;
+
+            if (endDate < startDate) {
+                messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
+                messageDiv.style.color = "red";
+                return;
             }
 
-            /**
-             * Handles the logic for changing the current president.
-             */
-            async function handlePresidentChange(newPresident) {
-                currentPresident = newPresident;
-                presidentSelect.value = newPresident;
-                searchPresident.value = newPresident;
+            const filteredData = filterByDate(startDateInput.value, endDateInput.value);
 
-                updateDateConstraints(newPresident);
-                updateSearchFieldOptions(newPresident);
-                allData = await loadPresidentData(newPresident);
+            if (filteredData.length === 0) {
+                messageDiv.textContent = "No data found for the selected range.";
+                return;
+            }
 
-                searchInput.value = "";
+            const fileName = `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}`;
+
+            if (fileFormat === "csv") {
+                const csv = convertToCSV(filteredData);
+                const bom = "\uFEFF"; // UTF-8 BOM
+                downloadBlob(bom + csv, `${fileName}.csv`, "text/csv;charset=utf-8;");
+            } else if (fileFormat === "xlsx") {
+                const worksheet = XLSX.utils.json_to_sheet(filteredData);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
+                XLSX.writeFile(workbook, `${fileName}.xlsx`);
+            }
+
+            messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
+            messageDiv.style.color = "green";
+        });
+
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.trim().toLowerCase();
+            const field = searchField.value;
+
+            if (!query) {
                 resultsDiv.innerHTML = "";
-                messageDiv.textContent = "";
+                return;
             }
 
-            // =================================================================
-            // EVENT LISTENERS
-            // =================================================================
-
-            downloadForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                messageDiv.textContent = "";
-
-                const startDate = new Date(startDateInput.value);
-                const endDate = new Date(endDateInput.value);
-                const fileFormat = document.getElementById("fileFormat").value;
-
-                if (endDate < startDate) {
-                    messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
-                    messageDiv.style.color = "red";
-                    return;
-                }
-
-                const filteredData = filterByDate(startDateInput.value, endDateInput.value);
-
-                if (filteredData.length === 0) {
-                    messageDiv.textContent = "No data found for the selected range.";
-                    return;
-                }
-
-                const fileName = `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}`;
-
-                if (fileFormat === "csv") {
-                    const csv = convertToCSV(filteredData);
-                    const bom = "\uFEFF"; // UTF-8 BOM
-                    downloadBlob(bom + csv, `${fileName}.csv`, "text/csv;charset=utf-8;");
-                } else if (fileFormat === "xlsx") {
-                    const worksheet = XLSX.utils.json_to_sheet(filteredData);
-                    const workbook = XLSX.utils.book_new();
-                    XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
-                    XLSX.writeFile(workbook, `${fileName}.xlsx`);
-                }
-
-                messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
-                messageDiv.style.color = "green";
+            const filtered = allData.filter(entry => {
+                const target = (entry[field] || "").toLowerCase();
+                return target.includes(query);
             });
 
-            searchInput.addEventListener("input", () => {
-                const query = searchInput.value.trim().toLowerCase();
-                const field = searchField.value;
+            const { dateKey } = presidentConfig[currentPresident];
+            filtered.sort((a, b) => b[dateKey].localeCompare(a[dateKey]));
 
-                if (!query) {
-                    resultsDiv.innerHTML = "";
-                    return;
-                }
+            displayFilteredData(filtered);
+        });
 
-                const filtered = allData.filter(entry => {
-                    const target = (entry[field] || "").toLowerCase();
-                    return target.includes(query);
+        presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
+        searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+
+        // =================================================================
+        // INITIAL PAGE LOAD
+        // =================================================================
+
+        document.addEventListener("DOMContentLoaded", () => {
+            handlePresidentChange(currentPresident);
+
+            setTimeout(() => {
+                const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
+                idsToAnimate.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.opacity = "1";
                 });
+            }, 500);
+        });
 
-                const { dateKey } = presidentConfig[currentPresident];
-                filtered.sort((a, b) => b[dateKey].localeCompare(a[dateKey]));
+        // =================================================================
+        // D3.JS BUBBLE CHART
+        // =================================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            // This part of the code runs after the page is fully loaded
 
-                displayFilteredData(filtered);
+            // An array of the president data files to load
+            const files = [
+                { name: "Lula", path: "data/all_data.json" },
+                { name: "Bolsonaro", path: "data/bolsonaro_agenda.json" },
+                { name: "Temer", path: "data/temer_agenda.json" },
+                { name: "Dilma", path: "data/agenda_dilma_final.json" }
+            ];
+
+            // Use Promise.all to load all JSON files at once
+            Promise.all(files.map(f => d3.json(f.path))).then(datasets => {
+
+                // Process the loaded data to get meeting counts
+                const processedData = datasets.map((data, i) => ({
+                    president: files[i].name,
+                    meetings: data.length // The number of meetings is the length of the array
+                }));
+
+                drawBubbleChart(processedData);
+
+            }).catch(error => {
+                // If there's an error loading files, log it to the console
+                console.error("Error loading presidential data:", error);
+                document.getElementById("bubble-chart-container").textContent = "Could not load data for the chart.";
             });
 
-            presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
-            searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+            function drawBubbleChart(data) {
+                const width = 800;
+                const height = 400; // Adjusted height for better layout
 
-            // =================================================================
-            // INITIAL PAGE LOAD
-            // =================================================================
+                // Create a root object suitable for d3.hierarchy
+                const root = d3.hierarchy({ children: data })
+                    .sum(d => d.meetings) // The size of the circles is based on the number of meetings
+                    .sort((a, b) => b.value - a.value);
 
-            document.addEventListener("DOMContentLoaded", () => {
-                handlePresidentChange(currentPresident);
+                // Create the bubble layout function
+                const pack = d3.pack()
+                    .size([width - 2, height - 2])
+                    .padding(5);
 
-                setTimeout(() => {
-                    const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
-                    idsToAnimate.forEach(id => {
-                        const el = document.getElementById(id);
-                        if (el) el.style.opacity = "1";
+                const nodes = pack(root).leaves();
+
+                // Create the SVG container for the chart
+                const svg = d3.select("#bubble-chart-container")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("font-size", 10)
+                    .attr("font-family", "sans-serif")
+                    .attr("text-anchor", "middle");
+
+                // Create a tooltip div and append it to the body
+                const tooltip = d3.select("body").append("div")
+                    .attr("class", "tooltip");
+
+                // Create a 'g' element for each data point (node)
+                const node = svg.selectAll("g")
+                    .data(nodes)
+                    .join("g")
+                    .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
+
+                // Add a circle to each 'g' element
+                node.append("circle")
+                    .attr("r", d => d.r)
+                    .attr("fill", "#149e59") // Using your theme's green color
+                    .attr("fill-opacity", 0.7)
+                    .on("mouseover", function (event, d) {
+                        // Show tooltip on hover
+                        tooltip.transition().style("opacity", .9);
+                        tooltip.html(`<strong>${d.data.president}</strong><br/>${d.data.meetings.toLocaleString()} meetings`)
+                            .style("left", (event.pageX + 5) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                        // Make the circle slightly bigger
+                        d3.select(this).transition().attr("r", d.r * 1.05);
+                    })
+                    .on("mouseout", function (d) {
+                        // Hide tooltip on mouseout
+                        tooltip.transition().style("opacity", 0);
+                        // Return circle to original size
+                        d3.select(this).transition().attr("r", d.r);
                     });
-                }, 500);
-            });
+
+                // Add the president's name as a label
+                node.append("text")
+                    .attr("clip-path", d => `circle(${d.r})`) // Clips text that overflows the circle
+                    .selectAll("tspan")
+                    .data(d => d.data.president.split(/(?=[A-Z][a-z])/g))
+                    .join("tspan")
+                    .attr("x", 0)
+                    .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
+                    .text(d => d)
+                    .attr("fill", "white")
+                    .style("font-weight", "bold");
+            }
+        });
 
 
-        </script>
+    </script>
 </body>
 
 </html>
