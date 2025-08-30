@@ -19,7 +19,7 @@ async function countPlanalto() {
 
   for (let file of files) {
     const data = await d3.json(file);
-    total += data.filter(d => d.location && d.location.toLowerCase().includes("palácio do planalto")).length;
+    total += data.filter(d => d.local && d.local.toLowerCase().includes("palácio do planalto")).length;
   }
 
   return total;
