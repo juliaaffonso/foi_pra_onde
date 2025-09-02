@@ -468,344 +468,354 @@
     </div>
 
     <script>
-    // =================================================================
-    // CONFIGURATION
-    // =================================================================
-    const presidentConfig = {
-        "lula": {
-            fileName: "all_data.json",
-            minDate: "2023-01-01",
-            maxDate: "2025-08-29", // Today's date
-            dateKey: "data",
-            searchFields: [{ value: "participantes", text: "Participantes" }, { value: "compromisso", text: "Reunião" }],
-            displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "data" }, { header: "Agenda", key: "compromisso" }, { header: "Horário", key: "inicio" }, { header: "Local", key: "local" }, { header: "Participantes", key: "participantes" }]
-        },
-        "bolsonaro": {
-            fileName: "bolsonaro_agenda.json",
-            minDate: "2019-01-01",
-            maxDate: "2022-12-31",
-            dateKey: "date",
-            searchFields: [{ value: "compromisso", text: "Compromisso" }],
-            displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "date" }, { header: "Horário", key: "time" }, { header: "Agenda", key: "compromisso" }, { header: "Local", key: "local" }]
-        },
-        "temer": {
-            fileName: "temer_agenda.json",
-            minDate: "2016-05-01",
-            maxDate: "2018-12-31",
-            dateKey: "date",
-            searchFields: [{ value: "description", text: "Compromisso" }],
-            displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "date" }, { header: "Horário", key: "time" }, { header: "Agenda", key: "description" }, { header: "Local", key: "location" }]
-        },
-        "dilma": {
-            fileName: "agenda_dilma_final.json",
-            minDate: "2011-01-01",
-            maxDate: "2016-06-01",
-            dateKey: "data",
-            searchFields: [{ value: "compromisso", text: "Compromisso" }],
-            displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "data" }, { header: "Horário", key: "horario" }, { header: "Agenda", key: "compromisso" }, { header: "Cargo", key: "cargo" }, { header: "Local", key: "local" }]
-        }
-    };
+        // =================================================================
+        // CONFIGURATION
+        // =================================================================
+        const presidentConfig = {
+            "lula": {
+                fileName: "all_data.json",
+                minDate: "2023-01-01",
+                maxDate: getToday(),
+                dateKey: "data",
+                searchFields: [{ value: "participantes", text: "Participantes" }, { value: "compromisso", text: "Reunião" }],
+                displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "data" }, { header: "Agenda", key: "compromisso" }, { header: "Horário", key: "inicio" }, { header: "Local", key: "local" }, { header: "Participantes", key: "participantes" }]
+            },
+            "bolsonaro": {
+                fileName: "bolsonaro_agenda.json",
+                minDate: "2019-01-01",
+                maxDate: "2022-12-31",
+                dateKey: "date",
+                searchFields: [{ value: "compromisso", text: "Compromisso" }],
+                displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "date" }, { header: "Horário", key: "time" }, { header: "Agenda", key: "compromisso" }, { header: "Local", key: "local" }]
+            },
+            "temer": {
+                fileName: "temer_agenda.json",
+                minDate: "2016-05-01",
+                maxDate: "2018-12-31",
+                dateKey: "date",
+                searchFields: [{ value: "description", text: "Compromisso" }],
+                displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "date" }, { header: "Horário", key: "time" }, { header: "Agenda", key: "description" }, { header: "Local", key: "location" }]
+            },
+            "dilma": {
+                fileName: "agenda_dilma_final.json",
+                minDate: "2011-01-01",
+                maxDate: "2016-06-01",
+                dateKey: "data",
+                searchFields: [{ value: "compromisso", text: "Compromisso" }],
+                displayColumns: [{ header: "URL", key: "url" }, { header: "Data", key: "data" }, { header: "Horário", key: "horario" }, { header: "Agenda", key: "compromisso" }, { header: "Cargo", key: "cargo" }, { header: "Local", key: "local" }]
+            }
+        };
 
-    // =================================================================
-    // GLOBAL VARIABLES & DOM ELEMENTS
-    // =================================================================
-    let allData = [];
-    let currentPresident = "lula";
-    const startDateInput = document.getElementById("startDate");
-    const endDateInput = document.getElementById("endDate");
-    const downloadForm = document.getElementById("downloadForm");
-    const messageDiv = document.getElementById("message");
-    const searchInput = document.getElementById("searchInput");
-    const resultsDiv = document.getElementById("results");
-    const presidentSelect = document.getElementById("presidentSelect");
-    const searchPresident = document.getElementById("searchPresident");
-    const searchField = document.getElementById("searchField");
+        // =================================================================
+        // GLOBAL VARIABLES & DOM ELEMENTS
+        // =================================================================
+        let allData = [];
+        let currentPresident = "lula";
+        const startDateInput = document.getElementById("startDate");
+        const endDateInput = document.getElementById("endDate");
+        const downloadForm = document.getElementById("downloadForm");
+        const messageDiv = document.getElementById("message");
+        const searchInput = document.getElementById("searchInput");
+        const resultsDiv = document.getElementById("results");
+        const presidentSelect = document.getElementById("presidentSelect");
+        const searchPresident = document.getElementById("searchPresident");
+        const searchField = document.getElementById("searchField");
 
-    // =================================================================
-    // FUNCTIONS
-    // =================================================================
-    function updateDateConstraints(president) {
-        const config = presidentConfig[president];
-        if (!config) return;
-        startDateInput.min = config.minDate;
-        startDateInput.max = config.maxDate;
-        endDateInput.min = config.minDate;
-        endDateInput.max = config.maxDate;
-        if (!startDateInput.value || startDateInput.value < config.minDate || startDateInput.value > config.maxDate) {
-            startDateInput.value = config.minDate;
-        }
-        if (!endDateInput.value || endDateInput.value < config.minDate || endDateInput.value > config.maxDate) {
-            endDateInput.value = config.maxDate;
-        }
-    }
-
-    async function loadPresidentData(president) {
-        messageDiv.textContent = "Loading data...";
-        const config = presidentConfig[president];
-        if (!config || !config.fileName) {
-            messageDiv.textContent = `Error: Configuration or file for ${president} not found.`;
-            messageDiv.style.color = "red";
-            return [];
-        }
-        try {
-            const response = await fetch(`data/${config.fileName}`);
-            if (!response.ok) throw new Error("Network response was not ok.");
-            const data = await response.json();
-            messageDiv.textContent = "";
-            return data;
-        } catch (error) {
-            messageDiv.textContent = `Error loading data: ${error.message}`;
-            messageDiv.style.color = "red";
-            return [];
-        }
-    }
-
-    function filterByDate(start, end) {
-        const { dateKey } = presidentConfig[currentPresident];
-        return allData.filter(entry => entry[dateKey] >= start && entry[dateKey] <= end);
-    }
-
-    function convertToCSV(data) {
-        if (data.length === 0) return "";
-        const headers = Object.keys(data[0]);
-        const csvRows = [headers.join(",")];
-        data.forEach(row => {
-            const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
-            csvRows.push(values.join(","));
-        });
-        return csvRows.join("\n");
-    }
-
-    function downloadBlob(content, filename, type) {
-        const blob = new Blob([content], { type });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
-    function updateSearchFieldOptions(president) {
-        searchField.innerHTML = "";
-        const config = presidentConfig[president];
-        if (!config) return;
-        config.searchFields.forEach(field => {
-            const option = document.createElement("option");
-            option.value = field.value;
-            option.textContent = field.text;
-            searchField.appendChild(option);
-        });
-    }
-
-    function displayFilteredData(data) {
-        if (data.length === 0) {
-            resultsDiv.innerHTML = "<p>No matches found.</p>";
-            return;
-        }
-        const config = presidentConfig[currentPresident];
-        if (!config) return;
-        const tableHeaders = config.displayColumns.map(col => `<th>${col.header}</th>`).join('');
-        const tableRows = data.map(entry => {
-            const cells = config.displayColumns.map(col => `<td>${entry[col.key] || ""}</td>`).join('');
-            return `<tr>${cells}</tr>`;
-        }).join('');
-        resultsDiv.innerHTML = `<table><thead><tr>${tableHeaders}</tr></thead><tbody>${tableRows}</tbody></table>`;
-    }
-
-    async function handlePresidentChange(newPresident) {
-        currentPresident = newPresident;
-        presidentSelect.value = newPresident;
-        searchPresident.value = newPresident;
-        updateDateConstraints(newPresident);
-        updateSearchFieldOptions(newPresident);
-        allData = await loadPresidentData(newPresident);
-        searchInput.value = "";
-        resultsDiv.innerHTML = "";
-        messageDiv.textContent = "";
-    }
-
-    // =================================================================
-    // D3.JS BUBBLE CHART FUNCTION (NEW VERSION)
-    // =================================================================
-    function initializeBubbleChart() {
-        const files = [
-            "data/all_data.json",          // Lula
-            "data/bolsonaro_agenda.json",  // Bolsonaro
-            "data/temer_agenda.json",      // Temer
-            "data/agenda_dilma_final.json" // Dilma
-        ];
-
-        Promise.all(files.map(url => d3.json(url))).then(allDatasets => {
-            // 1. Combine all datasets and count location frequencies
-            const locationCounts = allDatasets.flat().reduce((acc, entry) => {
-                const location = (entry.local || entry.location || "").trim();
-                if (location) {
-                    acc[location] = (acc[location] || 0) + 1;
-                }
-                return acc;
-            }, {});
-
-            // 2. Convert map to array, sort, and get top 40
-            const top40Locations = Object.entries(locationCounts)
-                .map(([location, count]) => ({ location, count }))
-                .sort((a, b) => b.count - a.count)
-                .slice(0, 40);
-
-            // 3. Draw the chart with the new data
-            drawLocationBubbleChart(top40Locations);
-
-        }).catch(error => {
-            console.error("Error loading data for bubble chart:", error);
-            document.getElementById("bubble-chart-container").textContent = "Could not load data for the chart.";
-        });
-    }
-
-    function drawLocationBubbleChart(data) {
-        // --- Chart Dimensions ---
-        const width = 800;
-        const height = 600; // Increased height for better bubble separation
-
-        // --- Clear previous SVG and prepare container ---
-        const container = d3.select("#bubble-chart-container");
-        container.html(""); // Clear previous chart
-
-        // --- Create SVG and Tooltip ---
-        const svg = container.append("svg")
-            .attr("viewBox", `0 0 ${width} ${height}`)
-            .attr("width", "100%")
-            .attr("height", "auto")
-            .attr("font-family", "sans-serif")
-            .attr("text-anchor", "middle");
-
-        let tooltip = d3.select(".tooltip");
-        if (tooltip.empty()) {
-            tooltip = d3.select("body").append("div").attr("class", "tooltip");
+        // =================================================================
+        // FUNCTIONS
+        // =================================================================
+        function updateDateConstraints(president) {
+            const config = presidentConfig[president];
+            if (!config) return;
+            startDateInput.min = config.minDate;
+            startDateInput.max = config.maxDate;
+            endDateInput.min = config.minDate;
+            endDateInput.max = config.maxDate;
+            if (!startDateInput.value || startDateInput.value < config.minDate || startDateInput.value > config.maxDate) {
+                startDateInput.value = config.minDate;
+            }
+            if (!endDateInput.value || endDateInput.value < config.minDate || endDateInput.value > config.maxDate) {
+                endDateInput.value = config.maxDate;
+            }
         }
 
-        // --- D3 Pack Layout ---
-        const pack = d3.pack()
-            .size([width - 2, height - 2])
-            .padding(5);
+        async function loadPresidentData(president) {
+            messageDiv.textContent = "Loading data...";
+            const config = presidentConfig[president];
+            if (!config || !config.fileName) {
+                messageDiv.textContent = `Error: Configuration or file for ${president} not found.`;
+                messageDiv.style.color = "red";
+                return [];
+            }
+            try {
+                const response = await fetch(`data/${config.fileName}`);
+                if (!response.ok) throw new Error("Network response was not ok.");
+                const data = await response.json();
+                messageDiv.textContent = "";
+                return data;
+            } catch (error) {
+                messageDiv.textContent = `Error loading data: ${error.message}`;
+                messageDiv.style.color = "red";
+                return [];
+            }
+        }
 
-        const root = d3.hierarchy({ children: data })
-            .sum(d => d.count)
-            .sort((a, b) => b.value - a.value);
+        function filterByDate(start, end) {
+            const { dateKey } = presidentConfig[currentPresident];
+            return allData.filter(entry => entry[dateKey] >= start && entry[dateKey] <= end);
+        }
 
-        const nodes = pack(root).leaves();
-
-        // --- Color Scale ---
-        const color = d3.scaleSequential()
-            .domain(d3.extent(data, d => d.count))
-            .interpolator(d3.interpolateViridis);
-
-        // --- Draw Bubbles (Nodes) ---
-        const node = svg.selectAll("g")
-            .data(nodes)
-            .join("g")
-            .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
-
-        node.append("circle")
-            .attr("r", d => d.r)
-            .attr("fill", d => color(d.data.count))
-            .attr("fill-opacity", 0.9)
-            .each(function (d) { d.originalR = d.r; }) // Store radius for hover
-            .on("mouseover", function (event, d) {
-                tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`<strong>${d.data.location}</strong><br/>${d.data.count.toLocaleString()} meetings`)
-                    .style("left", (event.pageX + 10) + "px")
-                    .style("top", (event.pageY - 28) + "px");
-                d3.select(this).transition().duration(200).attr("r", d.originalR * 1.05);
-            })
-            .on("mouseout", function (event, d) {
-                tooltip.transition().duration(500).style("opacity", 0);
-                d3.select(this).transition().duration(200).attr("r", d.originalR);
+        function convertToCSV(data) {
+            if (data.length === 0) return "";
+            const headers = Object.keys(data[0]);
+            const csvRows = [headers.join(",")];
+            data.forEach(row => {
+                const values = headers.map(header => `"${String(row[header]).replace(/"/g, '""')}"`);
+                csvRows.push(values.join(","));
             });
-
-        // --- Add Text Labels ---
-        node.append("text")
-            .attr("clip-path", d => `circle(${d.r})`) // Clip text that overflows
-            .selectAll("tspan")
-            .data(d => d.data.location.split(/\s+/)) // Split location name into words
-            .join("tspan")
-            .attr("x", 0)
-            .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`) // Center text lines
-            .text(d => d)
-            .attr("fill", "white")
-            .style("font-size", "10px")
-            .style("font-weight", "bold")
-            .style("pointer-events", "none"); // Let mouse events pass through to the circle
-    }
-
-    // =================================================================
-    // EVENT LISTENERS & INITIAL PAGE LOAD
-    // =================================================================
-    downloadForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        messageDiv.textContent = "";
-        const startDate = new Date(startDateInput.value);
-        const endDate = new Date(endDateInput.value);
-        const fileFormat = document.getElementById("fileFormat").value;
-        if (endDate < startDate) {
-            messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
-            messageDiv.style.color = "red";
-            return;
+            return csvRows.join("\n");
         }
-        const filteredData = filterByDate(startDateInput.value, endDateInput.value);
-        if (filteredData.length === 0) {
-            messageDiv.textContent = "No data found for the selected range.";
-            return;
-        }
-        const fileName = `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}`;
-        if (fileFormat === "csv") {
-            const csv = convertToCSV(filteredData);
-            const bom = "\uFEFF";
-            downloadBlob(bom + csv, `${fileName}.csv`, "text/csv;charset=utf-8;");
-        } else if (fileFormat === "xlsx") {
-            const worksheet = XLSX.utils.json_to_sheet(filteredData);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
-            XLSX.writeFile(workbook, `${fileName}.xlsx`);
-        }
-        messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
-        messageDiv.style.color = "green";
-    });
 
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.trim().toLowerCase();
-        const field = searchField.value;
-        if (!query) {
+        function downloadBlob(content, filename, type) {
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function updateSearchFieldOptions(president) {
+            searchField.innerHTML = "";
+            const config = presidentConfig[president];
+            if (!config) return;
+            config.searchFields.forEach(field => {
+                const option = document.createElement("option");
+                option.value = field.value;
+                option.textContent = field.text;
+                searchField.appendChild(option);
+            });
+        }
+
+        function displayFilteredData(data) {
+            if (data.length === 0) {
+                resultsDiv.innerHTML = "<p>No matches found.</p>";
+                return;
+            }
+            const config = presidentConfig[currentPresident];
+            if (!config) return;
+            const tableHeaders = config.displayColumns.map(col => `<th>${col.header}</th>`).join('');
+            const tableRows = data.map(entry => {
+                const cells = config.displayColumns.map(col => `<td>${entry[col.key] || ""}</td>`).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+            resultsDiv.innerHTML = `<table><thead><tr>${tableHeaders}</tr></thead><tbody>${tableRows}</tbody></table>`;
+        }
+
+        async function handlePresidentChange(newPresident) {
+            currentPresident = newPresident;
+            presidentSelect.value = newPresident;
+            searchPresident.value = newPresident;
+            updateDateConstraints(newPresident);
+            updateSearchFieldOptions(newPresident);
+            allData = await loadPresidentData(newPresident);
+            searchInput.value = "";
             resultsDiv.innerHTML = "";
-            return;
+            messageDiv.textContent = "";
         }
-        const filtered = allData.filter(entry => (entry[field] || "").toLowerCase().includes(query));
-        const { dateKey } = presidentConfig[currentPresident];
-        filtered.sort((a, b) => b[dateKey].localeCompare(a[dateKey]));
-        displayFilteredData(filtered);
-    });
 
-    presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
-    searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+        // Get today's date in YYYY-MM-DD format
+        function getToday() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        // 1. Set up the initial state for the forms
-        handlePresidentChange(currentPresident);
 
-        // 2. Animate the SVG text
-        setTimeout(() => {
-            const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
-            idsToAnimate.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.opacity = "1";
-            });
-        }, 500);
+            // =================================================================
+            // D3.JS BUBBLE CHART FUNCTION (NEW VERSION)
+            // =================================================================
+            function initializeBubbleChart() {
+                const files = [
+                    "data/all_data.json",          // Lula
+                    "data/bolsonaro_agenda.json",  // Bolsonaro
+                    "data/temer_agenda.json",      // Temer
+                    "data/agenda_dilma_final.json" // Dilma
+                ];
 
-        // 3. Initialize and draw the D3 Bubble Chart
-        initializeBubbleChart();
-    });
-</script>
+                Promise.all(files.map(url => d3.json(url))).then(allDatasets => {
+                    // 1. Combine all datasets and count location frequencies
+                    const locationCounts = allDatasets.flat().reduce((acc, entry) => {
+                        const location = (entry.local || entry.location || "").trim();
+                        if (location) {
+                            acc[location] = (acc[location] || 0) + 1;
+                        }
+                        return acc;
+                    }, {});
+
+                    // 2. Convert map to array, sort, and get top 40
+                    const top40Locations = Object.entries(locationCounts)
+                        .map(([location, count]) => ({ location, count }))
+                        .sort((a, b) => b.count - a.count)
+                        .slice(0, 40);
+
+                    // 3. Draw the chart with the new data
+                    drawLocationBubbleChart(top40Locations);
+
+                }).catch(error => {
+                    console.error("Error loading data for bubble chart:", error);
+                    document.getElementById("bubble-chart-container").textContent = "Could not load data for the chart.";
+                });
+            }
+
+        function drawLocationBubbleChart(data) {
+            // --- Chart Dimensions ---
+            const width = 800;
+            const height = 600; // Increased height for better bubble separation
+
+            // --- Clear previous SVG and prepare container ---
+            const container = d3.select("#bubble-chart-container");
+            container.html(""); // Clear previous chart
+
+            // --- Create SVG and Tooltip ---
+            const svg = container.append("svg")
+                .attr("viewBox", `0 0 ${width} ${height}`)
+                .attr("width", "100%")
+                .attr("height", "auto")
+                .attr("font-family", "sans-serif")
+                .attr("text-anchor", "middle");
+
+            let tooltip = d3.select(".tooltip");
+            if (tooltip.empty()) {
+                tooltip = d3.select("body").append("div").attr("class", "tooltip");
+            }
+
+            // --- D3 Pack Layout ---
+            const pack = d3.pack()
+                .size([width - 2, height - 2])
+                .padding(5);
+
+            const root = d3.hierarchy({ children: data })
+                .sum(d => d.count)
+                .sort((a, b) => b.value - a.value);
+
+            const nodes = pack(root).leaves();
+
+            // --- Color Scale ---
+            const color = d3.scaleSequential()
+                .domain(d3.extent(data, d => d.count))
+                .interpolator(d3.interpolateViridis);
+
+            // --- Draw Bubbles (Nodes) ---
+            const node = svg.selectAll("g")
+                .data(nodes)
+                .join("g")
+                .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
+
+            node.append("circle")
+                .attr("r", d => d.r)
+                .attr("fill", d => color(d.data.count))
+                .attr("fill-opacity", 0.9)
+                .each(function (d) { d.originalR = d.r; }) // Store radius for hover
+                .on("mouseover", function (event, d) {
+                    tooltip.transition().duration(200).style("opacity", .9);
+                    tooltip.html(`<strong>${d.data.location}</strong><br/>${d.data.count.toLocaleString()} meetings`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                    d3.select(this).transition().duration(200).attr("r", d.originalR * 1.05);
+                })
+                .on("mouseout", function (event, d) {
+                    tooltip.transition().duration(500).style("opacity", 0);
+                    d3.select(this).transition().duration(200).attr("r", d.originalR);
+                });
+
+            // --- Add Text Labels ---
+            node.append("text")
+                .attr("clip-path", d => `circle(${d.r})`) // Clip text that overflows
+                .selectAll("tspan")
+                .data(d => d.data.location.split(/\s+/)) // Split location name into words
+                .join("tspan")
+                .attr("x", 0)
+                .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`) // Center text lines
+                .text(d => d)
+                .attr("fill", "white")
+                .style("font-size", "10px")
+                .style("font-weight", "bold")
+                .style("pointer-events", "none"); // Let mouse events pass through to the circle
+        }
+
+        // =================================================================
+        // EVENT LISTENERS & INITIAL PAGE LOAD
+        // =================================================================
+        downloadForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            messageDiv.textContent = "";
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const fileFormat = document.getElementById("fileFormat").value;
+            if (endDate < startDate) {
+                messageDiv.textContent = "Error: End date cannot be earlier than the start date.";
+                messageDiv.style.color = "red";
+                return;
+            }
+            const filteredData = filterByDate(startDateInput.value, endDateInput.value);
+            if (filteredData.length === 0) {
+                messageDiv.textContent = "No data found for the selected range.";
+                return;
+            }
+            const fileName = `${currentPresident}_agenda_${startDateInput.value}_to_${endDateInput.value}`;
+            if (fileFormat === "csv") {
+                const csv = convertToCSV(filteredData);
+                const bom = "\uFEFF";
+                downloadBlob(bom + csv, `${fileName}.csv`, "text/csv;charset=utf-8;");
+            } else if (fileFormat === "xlsx") {
+                const worksheet = XLSX.utils.json_to_sheet(filteredData);
+                const workbook = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(workbook, worksheet, "Agenda");
+                XLSX.writeFile(workbook, `${fileName}.xlsx`);
+            }
+            messageDiv.textContent = `Downloaded ${filteredData.length} records.`;
+            messageDiv.style.color = "green";
+        });
+
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.trim().toLowerCase();
+            const field = searchField.value;
+            if (!query) {
+                resultsDiv.innerHTML = "";
+                return;
+            }
+            const filtered = allData.filter(entry => (entry[field] || "").toLowerCase().includes(query));
+            const { dateKey } = presidentConfig[currentPresident];
+            filtered.sort((a, b) => b[dateKey].localeCompare(a[dateKey]));
+            displayFilteredData(filtered);
+        });
+
+        presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
+        searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Set up the initial state for the forms
+            handlePresidentChange(currentPresident);
+
+            // 2. Animate the SVG text
+            setTimeout(() => {
+                const idsToAnimate = ["part-rest1", "part-rest2", "part-rest3", "part-rest4", "part-rest5"];
+                idsToAnimate.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.style.opacity = "1";
+                });
+            }, 500);
+
+            // 3. Initialize and draw the D3 Bubble Chart
+            initializeBubbleChart();
+        });
+    </script>
 </body>
 
 </html>
