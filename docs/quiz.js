@@ -3,11 +3,13 @@
 // Example questions
 const questions = [
   {
-    q: "How is the singer the ex-president Dilma Rousseff had a meeting with?",
+    q: "Quem é a cantora que a ex-presidente Dilma Rousseff se encontrou?",
+    hint: 'Ela é colombiana!',
     a: "Shakira"
   },
   {
-    q: "How many times is Palácio do Planalto mentioned in all the president agendas?",
+    q: "Quantas vezes o Palácio do Planalto é mencionado nas agendas presidenciais?",
+    hint: 'É um número na casa dos milhares',
     a: null // will be computed
   }
 ];
@@ -75,9 +77,16 @@ async function initQuiz() {
 
   quizDiv.append("h3").text(randomQuestion.q);
 
+  // Check for a hint and display it if it exists
+  if (randomQuestion.hint) {
+    quizDiv.append("p")
+      .attr("class", "quiz-hint") // Add a class for styling
+      .text(randomQuestion.hint);
+  }
+
   const input = quizDiv.append("input")
     .attr("type", "text")
-    .attr("placeholder", "Type your answer here");
+    .attr("placeholder", "Digite sua resposta aqui");
 
   quizDiv.append("button")
     .text("Submit")
