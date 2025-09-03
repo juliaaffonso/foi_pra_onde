@@ -340,32 +340,54 @@
             transition: opacity 0.2s;
         }
 
+        /* This creates a container with a fixed 4:3 aspect ratio (800 / 600) */
         .charts-wrapper {
             position: relative;
             width: 100%;
-            min-height: 500px;
-            /* Adjust depending on chart height */
+            aspect-ratio: 800 / 600;
         }
 
-        .chart {
-            display: none;
+        /* This positions each chart to fill the wrapper and sets up the fade effect */
+        .charts-wrapper .chart {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+
+            opacity: 0;
+            /* Hidden by default */
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out;
         }
 
-        .chart.active {
-            display: block;
+        /* This makes the active chart visible */
+        .charts-wrapper .chart.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* Add this CSS rule for the quiz hint */
+        /* This ensures your SVG image scales properly within the new container */
+        #altair-chart-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Scales the image to fit without distortion */
+        }
+
+        /* CSS rule for the quiz hint */
         .quiz-hint {
-            color: #6c757d;      /* A nice, smooth gray */
-            font-size: 0.9em;     /* Slightly smaller than the default text */
-            font-style: italic;   /* Makes it look more like a hint */
-            margin-top: -10px;    /* Pulls it a bit closer to the question */
-            margin-bottom: 15px;  /* Adds some space before the input box */
+            color: #6c757d;
+            /* A nice, smooth gray */
+            font-size: 0.9em;
+            /* Slightly smaller than the default text */
+            font-style: italic;
+            /* Makes it look more like a hint */
+            margin-top: -10px;
+            /* Pulls it a bit closer to the question */
+            margin-bottom: 15px;
+            /* Adds some space before the input box */
         }
-
     </style>
 </head>
 
