@@ -67,42 +67,51 @@ function editDistance(s1, s2) {
 
 // Initialize quiz
 async function initQuiz() {
-  const planaltoCount = await countPlanalto();
-  questions[1].a = String(planaltoCount);
 
-  const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+  try {
+    const planaltoCount = await countPlanalto();
+    questions[1].a = String(planaltoCount);
 
-  const quizDiv = d3.select("#quiz-container");
-  quizDiv.html(""); // clear everything inside
-  quizDiv.append("h2").text("Quiz Section"); // keep title
+    const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
-  quizDiv.append("h3").text(randomQuestion.q);
+    const quizDiv = d3.select("#quiz-container");
+    quizDiv.html(""); // clear everything inside
+    quizDiv.append("h2").text(""); // keep title
 
-  // Check for a hint and display it if it exists
-  if (randomQuestion.hint) {
-    quizDiv.append("p")
-      .attr("class", "quiz-hint") // Add a class for styling
-      .text(randomQuestion.hint);
+    quizDiv.append("h3").text(randomQuestion.q);
+
+    // Check for a hint and display it if it exists
+    if (randomQuestion.hint) {
+      quizDiv.append("p")
+        .attr("class", "quiz-hint") // Add a class for styling
+        .text(randomQuestion.hint);
+    }
+
+    const input = quizDiv.append("input")
+      .attr("type", "text")
+      .attr("placeholder", "Digite sua resposta aqui");
+
+    quizDiv.append("button")
+      .text("Submit")
+      .on("click", () => {
+        const userAnswer = input.property("value").trim();
+        const correctAnswer = randomQuestion.a.trim();
+
+        const score = similarity(userAnswer, correctAnswer);
+
+        if (score > 0.7) {  // allow ~70% similarity
+          alert("✅ Correct (close enough)!");
+        } else {
+          alert("❌ Wrong. Correct answer: " + correctAnswer);
+        }
+      });
   }
-
-  const input = quizDiv.append("input")
-    .attr("type", "text")
-    .attr("placeholder", "Digite sua resposta aqui");
-
-  quizDiv.append("button")
-    .text("Submit")
-    .on("click", () => {
-      const userAnswer = input.property("value").trim();
-      const correctAnswer = randomQuestion.a.trim();
-
-      const score = similarity(userAnswer, correctAnswer);
-
-      if (score > 0.7) {  // allow ~70% similarity
-        alert("✅ Correct (close enough)!");
-      } else {
-        alert("❌ Wrong. Correct answer: " + correctAnswer);
-      }
-    });
+  catch (error) {
+    console.error("Failed to initialize quiz:", error);
+    // Display a user-friendly message on the page
+    d3.select("#quiz-container")
+      .html("<h2>Oops!</h2><p>The quiz could not be loaded. Please try again later.</p>");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initQuiz);
