@@ -89,7 +89,7 @@ async function initQuiz() {
 
     const input = quizDiv.append("input")
       .attr("type", "text")
-      .attr("placeholder", "Digite sua resposta aqui");
+      .attr("placeholder", "Digite aqui");
 
     quizDiv.append("button")
       .text("Submit")
