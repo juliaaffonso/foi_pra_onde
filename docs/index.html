@@ -23,9 +23,8 @@
     <!-- Load D3 from CDN -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
+    <script defer src="quiz.js"></script>
     <script defer src="script.js"></script>
-
-    <script src="quiz.js"></script>
 
     <style>
         /* General Styling */
@@ -885,6 +884,8 @@
 
             // Make "Next Question" button load a new random question
             d3.select("#nextQuestion").on("click", initQuiz);
+            // Load the very first question when the page is ready
+            initQuiz();
         });
 
     </script>
