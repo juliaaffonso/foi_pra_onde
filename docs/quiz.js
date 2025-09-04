@@ -16,7 +16,7 @@ const questions = [
 
 // Count Palácio do Planalto mentions in multiple files
 async function countPlanalto() {
-  const files = ["all_data.json", "bolsonaro.json", "dilma.json", "temer.json"];
+  const files = ["data/all_data.json", "data/bolsonaro_agenda.json", "data/agenda_dilma_final.json", "data/temer_agenda.json"];
   let total = 0;
 
   for (let file of files) {
