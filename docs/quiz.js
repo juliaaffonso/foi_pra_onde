@@ -157,9 +157,9 @@ function displayRandomQuestion() {
       const score = similarity(userAnswer, correctAnswer);
 
       if (score > 0.7) {
-        alert("✅ Correcto!");
+        alert("✅ Simmm! Você acertou, parabéns! 🥳");
       } else {
-        alert("❌ Errado. A resposta correcta é: " + correctAnswer);
+        alert("❌ Não foi desta vez. A resposta correta é: " + correctAnswer);
       }
     });
 }

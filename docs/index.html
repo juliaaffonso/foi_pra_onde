@@ -400,10 +400,14 @@
             </div>
 
             <div class="header-text">
-                <h4>Esta página disponibiliza planilhas com dados de todas as reuniões presidenciaisno Brasil desde 2011.</h4>
-                <p>(As informações da <a href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula"> agenda oficial </a>
-                        do atual presidente são atualizadas diariamente. Dados de mandatos anteriores foram obtidos do <a
-                        href="https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes"> arquivo da Presidência da República</a>.)
+                <h4>Esta página disponibiliza planilhas com dados de todas as reuniões presidenciaisno Brasil desde
+                    2011.</h4>
+                <p>(As informações da <a
+                        href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula">
+                        agenda oficial </a>
+                    do atual presidente são atualizadas diariamente. Dados de mandatos anteriores foram obtidos do <a
+                        href="https://www.biblioteca.presidencia.gov.br/presidencia/ex-presidentes"> arquivo da
+                        Presidência da República</a>.)
                 </p>
             </div>
         </header>
@@ -418,7 +422,8 @@
         <div class="divider"></div>
 
         <main id="download-section">
-            <h6>Escolha as datas, o formato e aperte o botão verde abaixo para baixar os dados de cada presidente. ⬇</h6>
+            <h6>Escolha as datas, o formato e aperte o botão verde abaixo para baixar os dados de cada presidente. ⬇
+            </h6>
 
             <form id="downloadForm">
                 <div class="controls">
@@ -460,7 +465,7 @@
         <div class="divider"></div>
 
         <div id="search-section" class="search-container">
-            <h3>Busque aqui 🔎</h3>
+            <h2>Busque aqui 🔎</h2>
             <div class="search-controls">
                 <div class="format-selector">
                     <label for="searchPresident">Presidente:</label>
@@ -488,7 +493,7 @@
         <div class="divider"></div>
 
         <div id="quiz-section" class="content-section">
-            <h3>Quiz</h3>
+            <h2>Quiz</h2>
             <div id="quiz-container"></div>
             <button id="nextQuestion">Próxima</button>
         </div>
@@ -496,7 +501,7 @@
         <div class="divider"></div>
 
         <div id="dataviz-section" class="content-section">
-            <h3>Data Visualization</h3>
+            <h2>Visualização dos dados</h2>
             <div class="chart-navigation">
                 <button id="prevChart">⬅️ Anterior</button>
                 <button id="nextChart">Próximo ➡️</button>
@@ -772,6 +777,28 @@
                 .domain(d3.extent(data, d => d.count))
                 .interpolator(d3.interpolateViridis);
 
+            // --- Gradient Definitions ---
+            const defs = svg.append("defs");
+
+            nodes.forEach((d, i) => {
+                const baseColor = color(d.data.count);
+                const lighter = d3.color(baseColor).brighter(1.2);
+
+                const gradient = defs.append("radialGradient")
+                    .attr("id", `grad-${i}`)
+                    .attr("cx", "50%")
+                    .attr("cy", "50%")
+                    .attr("r", "50%");
+
+                gradient.append("stop")
+                    .attr("offset", "0%")
+                    .attr("stop-color", lighter);
+
+                gradient.append("stop")
+                    .attr("offset", "100%")
+                    .attr("stop-color", baseColor);
+            });
+
             // --- Draw Bubbles (Nodes) ---
             const node = svg.selectAll("g")
                 .data(nodes)
@@ -780,7 +807,7 @@
 
             node.append("circle")
                 .attr("r", d => d.r)
-                .attr("fill", d => color(d.data.count))
+                .attr("fill", (d, i) => `url(#grad-${i})`)
                 .attr("fill-opacity", 0.9)
                 .each(function (d) { d.originalR = d.r; })
                 .on("mouseover", function (event, d) {
@@ -794,9 +821,8 @@
                     tooltip.transition().duration(500).style("opacity", 0);
                     d3.select(this).transition().duration(200).attr("r", d.originalR);
                 });
-
-            // 👇 Removed the text labels inside bubbles
         }
+
 
         // =================================================================
         // EVENT LISTENERS & INITIAL PAGE LOAD
