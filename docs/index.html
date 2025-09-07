@@ -26,6 +26,10 @@
     <script defer src="quiz.js"></script>
     <script defer src="script.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
     <style>
         /* General Styling */
         body {
@@ -358,12 +362,15 @@
             /* Hidden by default */
             visibility: hidden;
             transition: opacity 0.4s ease-in-out;
+
         }
 
         /* This makes the active chart visible */
         .charts-wrapper .chart.active {
             opacity: 1;
             visibility: visible;
+
+
         }
 
         /* This ensures your SVG image scales properly within the new container */
@@ -422,13 +429,13 @@
         <div class="divider"></div>
 
         <main id="download-section">
-            <h6>Escolha as datas, o formato e aperte o botão verde abaixo para baixar os dados de cada presidente. ⬇
+            <h6>Escolha as datas, o formato e aperte o botão verde para baixar os dados de cada presidente. ⬇
             </h6>
 
             <form id="downloadForm">
                 <div class="controls">
                     <div class="format-selector president-selector-container">
-                        <label for="presidentSelect">President:</label>
+                        <label for="presidentSelect">Presidente:</label>
                         <select id="presidentSelect" name="presidentSelect">
                             <option value="lula">Lula</option>
                             <option value="bolsonaro">Bolsonaro</option>
@@ -513,8 +520,16 @@
 
                 <!-- Chart 2: Altair SVG -->
                 <div class="chart" id="altair-chart-container">
-                    <img src="charts/violin_presidents.svg" alt="Altair Chart" style="max-width:100%; height:auto;">
+                    <img src="charts/violin_presidents.svg" alt="Altair Chart"
+                        style="max-width:100%; height:auto;">
                 </div>
+
+                <!-- Chart 3: Altair SVG -->
+                <div class="chart" id="altair-chart-container">
+                    <img src="charts/table_meetings_presidents.svg" alt="Altair Chart"
+                        style="max-width:100%; height:auto;">
+                </div>
+
             </div>
         </div>
 
@@ -744,17 +759,29 @@
             const width = 800;
             const height = 600;
 
+            // --- D3 Margin Convention --- // <-- STEP 1: Define margins
+            const margin = { top: 60, right: 20, bottom: 20, left: 20 };
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
             // --- Clear previous SVG and prepare container ---
             const container = d3.select("#bubble-chart-container");
             container.html("");
 
-            // --- Create SVG and Tooltip ---
+            // --- Create SVG ---
+            // The main SVG has the full dimensions
             const svg = container.append("svg")
                 .attr("viewBox", `0 0 ${width} ${height}`)
                 .attr("width", "100%")
                 .attr("height", "auto")
-                .attr("font-family", "sans-serif")
-                .attr("text-anchor", "middle");
+                .attr("font-family", "sans-serif");
+            // We remove text-anchor from here as it's set on the title itself
+
+            // --- Create a group for the chart content --- // <-- STEP 2: Create a translated group
+            // All chart elements will go inside this 'g' tag.
+            // It's moved down and to the right by the margin amounts.
+            const chartGroup = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
             let tooltip = d3.select(".tooltip");
             if (tooltip.empty()) {
@@ -763,7 +790,7 @@
 
             // --- D3 Pack Layout ---
             const pack = d3.pack()
-                .size([width - 2, height - 2])
+                .size([innerWidth, innerHeight]) // <-- STEP 3: Use inner dimensions for the layout
                 .padding(5);
 
             const root = d3.hierarchy({ children: data })
@@ -774,33 +801,31 @@
 
             // --- Color Scale ---
             const color = d3.scaleSequential()
-                .domain(d3.extent(data, d => d.count))
+                .domain([0, d3.max(data, d => d.count)])
                 .interpolator(d3.interpolateViridis);
 
             // --- Gradient Definitions ---
-            const defs = svg.append("defs");
+            // Gradients should be defined in the main SVG's <defs>
+            const defs = svg.append("defs"); // <-- Append defs to the main svg
 
             nodes.forEach((d, i) => {
+                // ... (gradient code remains the same)
                 const baseColor = color(d.data.count);
                 const lighter = d3.color(baseColor).brighter(1.2);
 
                 const gradient = defs.append("radialGradient")
                     .attr("id", `grad-${i}`)
-                    .attr("cx", "50%")
-                    .attr("cy", "50%")
-                    .attr("r", "50%");
+                    .attr("cx", "50%").attr("cy", "50%").attr("r", "50%")
+                    .attr("fx", `${20 + Math.random() * 60}%`).attr("fy", `${20 + Math.random() * 60}%`);
 
-                gradient.append("stop")
-                    .attr("offset", "0%")
-                    .attr("stop-color", lighter);
-
-                gradient.append("stop")
-                    .attr("offset", "100%")
-                    .attr("stop-color", baseColor);
+                gradient.append("stop").attr("offset", "0%").attr("stop-color", lighter);
+                gradient.append("stop").attr("offset", "100%").attr("stop-color", baseColor);
             });
 
+
             // --- Draw Bubbles (Nodes) ---
-            const node = svg.selectAll("g")
+            // IMPORTANT: Append the nodes to the 'chartGroup', not the 'svg'
+            const node = chartGroup.selectAll("g") // <-- STEP 4: Append to chartGroup
                 .data(nodes)
                 .join("g")
                 .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
@@ -811,16 +836,40 @@
                 .attr("fill-opacity", 0.9)
                 .each(function (d) { d.originalR = d.r; })
                 .on("mouseover", function (event, d) {
-                    tooltip.transition().duration(200).style("opacity", .9);
-                    tooltip.html(`<strong>${d.data.location}</strong><br/>${d.data.count.toLocaleString()} meetings`)
-                        .style("left", (event.pageX + 10) + "px")
+                    tooltip
+                        .style("opacity", 1)
+                        .html(`<strong>${d.data.location}</strong><br/>Menções: ${d.data.count}`)
+                        .style("left", (event.pageX + 12) + "px")
                         .style("top", (event.pageY - 28) + "px");
-                    d3.select(this).transition().duration(200).attr("r", d.originalR * 1.05);
+
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("r", d.originalR * 1.1); // small grow effect
+                })
+                .on("mousemove", function (event) {
+                    tooltip
+                        .style("left", (event.pageX + 12) + "px")
+                        .style("top", (event.pageY - 28) + "px");
                 })
                 .on("mouseout", function (event, d) {
-                    tooltip.transition().duration(500).style("opacity", 0);
-                    d3.select(this).transition().duration(200).attr("r", d.originalR);
+                    tooltip.style("opacity", 0);
+
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("r", d.originalR);
                 });
+
+            // --- Add Title --- // <-- STEP 5: Add title to the main SVG, positioned in the top margin
+            svg.append("text")
+                .attr("x", width / 2) // Center horizontally in the full SVG
+                .attr("y", margin.top / 2) // Position vertically in the middle of the top margin
+                .attr("text-anchor", "middle")
+                .style("font-size", "22px")
+                .style("font-weight", "bold")
+                .style("fill", "darkslategray")
+                .text("Os lugares mais mencionados nas agendas");
         }
 
 

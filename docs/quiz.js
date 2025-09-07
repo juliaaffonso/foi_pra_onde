@@ -4,7 +4,7 @@
 const questions = [
   {
     q: "Quem é a cantora que a ex-presidente Dilma Rousseff se encontrou?",
-    hint: 'Ela é colombiana!',
+    hint: 'Ela nasceu na América do Sul',
     a: "Shakira"
   },
   {
@@ -16,6 +16,11 @@ const questions = [
     q: "Qual presidente divulgou mais agendas?",
     hint: 'Lembre-se que alguns tiveram mandatos mais longos',
     a: null // will be computed
+  },
+
+  {
+    q: "Qual é o dia da semana campeão de agendas?",
+    a: 'Quarta-feira'
   }
 ];
 
