@@ -132,7 +132,8 @@ async function setupQuiz() {
   }
 }
 
-// This function just handles the display part
+// quiz.js (updated function)
+
 function displayRandomQuestion() {
   const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
@@ -146,20 +147,20 @@ function displayRandomQuestion() {
       .text(randomQuestion.hint);
   }
 
-  const input = quizDiv.append("input")
+  // ✨ Create a flex container for the input and buttons
+  const controlsDiv = quizDiv.append("div")
+      .attr("class", "quiz-controls");
+
+  // Append the input to our new container
+  const input = controlsDiv.append("input")
     .attr("type", "text")
-    .attr("placeholder", "Digite aqui")
-    .style("width", "300px")
-    .style("padding", "10px")
-    .style("font-size", "18px");
+    .attr("placeholder", "Digite aqui");
+    // You can keep styling here or move it to CSS
 
-  const buttonContainer = quizDiv.append("div")
-      .attr("class", "button-container");
-
-  buttonContainer.append("button")
-    .text("Submit")
+  // Append the "Submit" button to the container
+  controlsDiv.append("button")
+    .text("Enviar") // Changed from "Submit" to "Enviar" for consistency
     .on("click", () => {
-      // ... your submit logic ...
       const userAnswer = input.property("value").trim();
       const correctAnswer = randomQuestion.a.trim();
       const score = similarity(userAnswer, correctAnswer);
@@ -170,6 +171,11 @@ function displayRandomQuestion() {
         alert("❌ Não foi desta vez. A resposta correta é: " + correctAnswer);
       }
     });
+
+  // ✨ Append the "Next Question" button to the container
+  controlsDiv.append("button")
+    .text("Próxima")
+    .on("click", displayRandomQuestion); // The click handler is right here!
 }
 
 // Start everything when the page is loaded

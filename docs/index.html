@@ -311,7 +311,7 @@
 
         /* Hover effect to make them interactive */
         .nav-btn:hover {
-            background-color: #149e59;
+            background-color: #0c5014;
             /* Green on hover */
             color: white;
             transform: translateY(-2px);
@@ -438,28 +438,53 @@
         }
 
         /* CSS rule for the quiz hint */
-        .quiz-hint {
-            color: #6c757d;
-            /* A nice, smooth gray */
-            font-size: 0.9em;
-            /* Slightly smaller than the default text */
-            font-style: italic;
-            /* Makes it look more like a hint */
-            margin-top: -10px;
-            /* Pulls it a bit closer to the question */
-            margin-bottom: 15px;
-            /* Adds some space before the input box */
+        /* Your final CSS rules */
+
+        #quiz-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .quiz-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         #quiz-container input[type="text"] {
             width: 300px;
-            /* makes box wider */
             font-size: 18px;
-            /* bigger text */
             padding: 10px;
-            /* extra height */
             border-radius: 8px;
-            /* optional: rounded corners */
+            border: 1px solid #ccc;
+            /* Added a subtle border */
+        }
+
+        .quiz-controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #149e59;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .quiz-controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .quiz-hint {
+            color: #6c757d;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -569,7 +594,6 @@
         <div id="quiz-section" class="content-section">
             <h2>Quiz</h2>
             <div id="quiz-container"></div>
-            <button id="nextQuestion">Próxima</button>
         </div>
 
         <div class="divider"></div>
@@ -1017,10 +1041,9 @@
             // Start with the first chart
             showChart(currentChartIndex);
 
-            // Make "Next Question" button load a new random question
+            // The button is now created with its own click handler.
             d3.select("#nextQuestion").on("click", setupQuiz);
-            // Load the very first question when the page is ready
-            setupQuiz();
+            d3.select("#nextQuestion").on("click", displayRandomQuestion);
         });
 
     </script>
