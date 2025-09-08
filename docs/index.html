@@ -304,6 +304,7 @@
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
+            margin-bottom: 15px;
             /* Removes underline from links */
             transition: all 0.3s ease;
         }
@@ -347,7 +348,13 @@
         .charts-wrapper {
             position: relative;
             width: 100%;
+            /* This correctly sets the uniform aspect ratio */
             aspect-ratio: 800 / 600;
+            border: 1px solid #eee;
+            margin-top: 15px;
+            /* Optional: helps visualize the container */
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         /* This positions each chart to fill the wrapper and sets up the fade effect */
@@ -357,28 +364,77 @@
             left: 0;
             width: 100%;
             height: 100%;
-
+            /* Centering the chart content inside */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Your fade transition */
             opacity: 0;
-            /* Hidden by default */
             visibility: hidden;
             transition: opacity 0.4s ease-in-out;
-
         }
 
         /* This makes the active chart visible */
         .charts-wrapper .chart.active {
             opacity: 1;
             visibility: visible;
-
-
         }
 
-        /* This ensures your SVG image scales properly within the new container */
-        #altair-chart-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+        /* Styles for SVGs and IMGs inside the charts */
+        /* NOTE: I made this selector more general so it applies to ALL charts, not just one ID. */
+        .chart svg,
+        .chart img {
+            max-width: 100%;
+            max-height: 100%;
             /* Scales the image to fit without distortion */
+            object-fit: contain;
+        }
+
+        /* 3. Mobile Styles (New code for the scroll effect) */
+        /* This will override the desktop styles on screens 768px or smaller */
+
+        @media (max-width: 768px) {
+
+            /* Change the wrapper to a flex container for scrolling */
+            .charts-wrapper {
+                display: flex;
+                overflow-x: auto;
+                /* Snaps the scroll to each chart */
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                /* Smooth scrolling on iOS */
+            }
+
+            /* Hide the scrollbar for a cleaner look */
+            .charts-wrapper {
+                scrollbar-width: none;
+                /* Firefox */
+            }
+
+            .charts-wrapper::-webkit-scrollbar {
+                display: none;
+                /* Chrome, Safari */
+            }
+
+            /* Override the chart styles to lay them out side-by-side */
+            .charts-wrapper .chart {
+                /* Revert positioning and visibility for scrolling */
+                position: static;
+                opacity: 1 !important;
+                visibility: visible !important;
+                /* Set up flex items for the scroll container */
+                flex-shrink: 0;
+                width: 100%;
+                height: auto;
+                /* Allow height to be determined by aspect-ratio */
+                scroll-snap-align: start;
+            }
+
+            /* Hide the navigation buttons on mobile */
+            #prevChart,
+            #nextChart {
+                display: none;
+            }
         }
 
         /* CSS rule for the quiz hint */
@@ -393,6 +449,17 @@
             /* Pulls it a bit closer to the question */
             margin-bottom: 15px;
             /* Adds some space before the input box */
+        }
+
+        #quiz-container input[type="text"] {
+            width: 300px;
+            /* makes box wider */
+            font-size: 18px;
+            /* bigger text */
+            padding: 10px;
+            /* extra height */
+            border-radius: 8px;
+            /* optional: rounded corners */
         }
     </style>
 </head>
@@ -490,7 +557,7 @@
 
                 <div class="search-input-wrapper">
                     <label for="searchInput" style="visibility: hidden;">Busque aqui:</label>
-                    <input type="text" id="searchInput" placeholder="Type here">
+                    <input type="text" id="searchInput" placeholder="Digite aqui">
                 </div>
             </div>
         </div>
@@ -519,15 +586,18 @@
                 <div class="chart" id="bubble-chart-container"></div>
 
                 <!-- Chart 2: Altair SVG -->
-                <div class="chart" id="altair-chart-container">
-                    <img src="charts/violin_presidents.svg" alt="Altair Chart"
-                        style="max-width:100%; height:auto;">
+                <div class="chart">
+                    <img src="charts/violin_presidents.svg" alt="Altair Chart">
                 </div>
 
                 <!-- Chart 3: Altair SVG -->
-                <div class="chart" id="altair-chart-container">
-                    <img src="charts/table_meetings_presidents.svg" alt="Altair Chart"
-                        style="max-width:100%; height:auto;">
+                <div class="chart">
+                    <img src="charts/table_meetings_presidents.svg" alt="Altair Chart">
+                </div>
+
+                <!-- Chart 4: Altair SVG -->
+                <div class="chart">
+                    <img src="charts/barchart_month_presidents.svg" alt="Altair Chart">
                 </div>
 
             </div>
@@ -731,17 +801,26 @@
                 // 1. Combine all datasets and count location frequencies
                 const locationCounts = allDatasets.flat().reduce((acc, entry) => {
                     const rawLocation = (entry.local || entry.location || "").trim();
-                    if (!rawLocation) return acc;
-                    if (rawLocation.toLowerCase().includes("sem informação")) return acc;
+                    if (!rawLocation || rawLocation.toLowerCase().includes("sem informação")) return acc;
 
                     const normalized = normalizeLocation(rawLocation);
-                    acc[normalized] = (acc[normalized] || 0) + 1;
+
+                    if (acc[normalized]) {
+                        acc[normalized].count += 1;
+                    } else {
+                        // Store both the count and the original raw location
+                        acc[normalized] = { count: 1, originalName: rawLocation };
+                    }
                     return acc;
                 }, {});
 
                 // 2. Convert map to array, sort, and get top 40
                 const top40Locations = Object.entries(locationCounts)
-                    .map(([location, count]) => ({ location, count }))
+                    .map(([normalizedName, data]) => ({
+                        // Use the original name for display, but keep the normalized one for potential future use
+                        location: data.originalName,
+                        count: data.count
+                    }))
                     .sort((a, b) => b.count - a.count)
                     .slice(0, 40);
 
@@ -800,28 +879,13 @@
             const nodes = pack(root).leaves();
 
             // --- Color Scale ---
-            const color = d3.scaleSequential()
-                .domain([0, d3.max(data, d => d.count)])
+            const color = d3.scaleSequentialSqrt()
+                .domain([d3.max(data, d => d.count), 0])
                 .interpolator(d3.interpolateViridis);
 
             // --- Gradient Definitions ---
             // Gradients should be defined in the main SVG's <defs>
             const defs = svg.append("defs"); // <-- Append defs to the main svg
-
-            nodes.forEach((d, i) => {
-                // ... (gradient code remains the same)
-                const baseColor = color(d.data.count);
-                const lighter = d3.color(baseColor).brighter(1.2);
-
-                const gradient = defs.append("radialGradient")
-                    .attr("id", `grad-${i}`)
-                    .attr("cx", "50%").attr("cy", "50%").attr("r", "50%")
-                    .attr("fx", `${20 + Math.random() * 60}%`).attr("fy", `${20 + Math.random() * 60}%`);
-
-                gradient.append("stop").attr("offset", "0%").attr("stop-color", lighter);
-                gradient.append("stop").attr("offset", "100%").attr("stop-color", baseColor);
-            });
-
 
             // --- Draw Bubbles (Nodes) ---
             // IMPORTANT: Append the nodes to the 'chartGroup', not the 'svg'
@@ -832,7 +896,7 @@
 
             node.append("circle")
                 .attr("r", d => d.r)
-                .attr("fill", (d, i) => `url(#grad-${i})`)
+                .attr("fill", d => color(d.data.count))
                 .attr("fill-opacity", 0.9)
                 .each(function (d) { d.originalR = d.r; })
                 .on("mouseover", function (event, d) {

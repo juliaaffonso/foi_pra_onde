@@ -148,7 +148,10 @@ function displayRandomQuestion() {
 
   const input = quizDiv.append("input")
     .attr("type", "text")
-    .attr("placeholder", "Digite aqui");
+    .attr("placeholder", "Digite aqui")
+    .style("width", "300px")
+    .style("padding", "10px")
+    .style("font-size", "18px");
 
   const buttonContainer = quizDiv.append("div")
       .attr("class", "button-container");
