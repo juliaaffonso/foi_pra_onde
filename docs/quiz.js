@@ -4,24 +4,34 @@
 const questions = [
   {
     q: "Quem é a cantora que a ex-presidente Dilma Rousseff se encontrou?",
-    hint: 'Ela nasceu na América do Sul',
+    hint: 'Dica: Ela nasceu na América do Sul',
     a: "Shakira"
   },
   {
     q: "Quantas vezes o Palácio do Planalto é mencionado nas agendas presidenciais?",
-    hint: 'É um número na casa dos milhares',
+    hint: 'Dica: É um número na casa dos milhares',
     a: null // will be computed
   },
   {
     q: "Qual presidente divulgou mais agendas?",
-    hint: 'Lembre-se que alguns tiveram mandatos mais longos',
+    hint: 'Dica: Lembre-se que alguns tiveram mandatos mais longos',
     a: null // will be computed
   },
 
   {
     q: "Qual é o dia da semana campeão de agendas?",
     a: 'Quarta-feira'
-  }
+  },
+
+  {
+    q: "Qual horário recebeu o maior número de reuniões?",
+    hint: 'É durante a tarde',
+    a: '15h'
+  },
+
+  { q: "Qual é o mês do ano que concentrou o maior número de agendas?",
+    a: 'Julho'
+    },
 ];
 
 // Count Palácio do Planalto mentions in multiple files
@@ -132,9 +142,8 @@ async function setupQuiz() {
   }
 }
 
-// quiz.js (updated function)
-
-function displayRandomQuestion() {
+function displayRandomQuestion() 
+{
   const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
 
   const quizDiv = d3.select("#quiz-container");
