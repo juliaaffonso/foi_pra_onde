@@ -950,14 +950,14 @@
                         .attr("r", d.originalR);
                 });
 
-            // --- Add Title --- // <-- STEP 5: Add title to the main SVG, positioned in the top margin
+            // --- Add Title --- //
             svg.append("text")
                 .attr("x", width / 2) // Center horizontally in the full SVG
                 .attr("y", margin.top / 2) // Position vertically in the middle of the top margin
                 .attr("text-anchor", "middle")
                 .style("font-size", "22px")
                 .style("font-weight", "bold")
-                .style("fill", "darkslategray")
+                .style("fill", "black")
                 .text("Os lugares mais mencionados nas agendas");
         }
 

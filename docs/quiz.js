@@ -29,6 +29,31 @@ const questions = [
     q: "Qual mês do ano concentrou o maior número de agendas?",
     a: 'Julho'
   },
+  
+  {
+    q: "Em que ano foi inaugurado o Palácio do Planalto?",
+    a: '1960'
+  },
+
+  {
+    q: "Em que ano foi inaugurado o Palácio da Alvorada?",
+    a: '1958'
+  },
+
+  {
+    q: "Quem foi o primeiro presidente do Brasil?",
+    a: 'Marechal Manuel Deodoro da Fonseca'
+  },
+
+  {
+    q: "Quem foi o primeiro presidente do Brasil eleito diretamente pelo voto popular?",
+    a: 'Prudente de Moraes'
+  },
+
+  {
+    q: "Quantos presidentes o Brasil já teve até hoje?",
+    a: '39'
+  },
 ];
 
 let availableQuestions = [];
