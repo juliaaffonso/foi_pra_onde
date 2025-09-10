@@ -293,18 +293,18 @@
 
         /* Styling for the new navigation buttons */
         .nav-btn {
-            background-color: #f0f0f0;
+            background-color: #149e59;
             /* A neutral background */
-            color: #333;
+            color: white;
             /* Dark text */
-            padding: 12px 25px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         /* Hover effect to make them interactive */
@@ -388,25 +388,51 @@
             object-fit: contain;
         }
 
-        /* 3. Mobile Styles (New code for the scroll effect) */
+        /* Styling for the pagination dots container */
+        .chart-dots {
+            text-align: center;
+            padding-top: 15px;
+            display: none;
+            /* Hidden by default on desktop */
+        }
+
+        /* Individual dot styling */
+        .chart-dots .dot {
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            /* Makes it a circle */
+            background-color: #ccc;
+            /* Inactive dot color */
+            margin: 0 5px;
+            /* Spacing between dots */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Style for the active dot */
+        .chart-dots .dot.active {
+            background-color: #149e59;
+            /* Your theme's green color */
+        }
+
+        /* Mobile Styles */
         /* This will override the desktop styles on screens 768px or smaller */
 
         @media (max-width: 768px) {
 
-            /* Change the wrapper to a flex container for scrolling */
+            /* Make the dots visible on mobile */
+            .chart-dots {
+                display: block;
+            }
+
             .charts-wrapper {
                 display: flex;
                 overflow-x: auto;
-                /* Snaps the scroll to each chart */
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
-                /* Smooth scrolling on iOS */
-            }
-
-            /* Hide the scrollbar for a cleaner look */
-            .charts-wrapper {
                 scrollbar-width: none;
-                /* Firefox */
+                /* Hides in Firefox */
             }
 
             .charts-wrapper::-webkit-scrollbar {
@@ -500,7 +526,7 @@
             </div>
 
             <div class="header-text">
-                <h4>Esta página disponibiliza planilhas com dados de todas as reuniões presidenciais no Brasil desde
+                <h4>Esta página disponibiliza planilhas com dados de reuniões presidenciais no Brasil desde
                     2011.</h4>
                 <p>(As informações da <a
                         href="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica-lula">
@@ -602,8 +628,8 @@
         <div id="dataviz-section" class="content-section">
             <h2>Visualização dos dados 📊</h2>
             <div class="chart-navigation">
-                <button id="prevChart">⬅️ Anterior</button>
-                <button id="nextChart">Próximo ➡️</button>
+                <button id="prevChart" class="nav-btn">Anterior</button>
+                <button id="nextChart" class="nav-btn">Próximo</button>
             </div>
 
             <div class="charts-wrapper">
@@ -624,7 +650,13 @@
                 <div class="chart">
                     <img src="charts/barchart_month_presidents.svg" alt="Altair Chart">
                 </div>
-
+            </div>
+            
+            <div class="chart-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </div>
 
@@ -1012,6 +1044,7 @@
         presidentSelect.addEventListener("change", () => handlePresidentChange(presidentSelect.value));
         searchPresident.addEventListener("change", () => handlePresidentChange(searchPresident.value));
 
+
         document.addEventListener("DOMContentLoaded", () => {
             // Initialize with default president
             handlePresidentChange(currentPresident);
@@ -1020,12 +1053,18 @@
             initializeBubbleChart();
 
             // Chart navigation logic
+            const chartsWrapper = document.querySelector('.charts-wrapper'); // <-- 1. Get the container
             const charts = document.querySelectorAll(".chart");
+            const dots = document.querySelectorAll('.chart-dots .dot');
             let currentChartIndex = 0;
 
             function showChart(index) {
                 charts.forEach((chart, i) => {
                     chart.classList.toggle("active", i === index);
+                });
+                // Also update dots for desktop view
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === index);
                 });
             }
 
@@ -1039,14 +1078,32 @@
                 showChart(currentChartIndex);
             });
 
-            // Start with the first chart
+            // This function updates the active dot based on the scroll position on mobile
+            function updateActiveDot() {
+                // Check if we are in mobile view
+                if (window.innerWidth <= 768) {
+                    // <-- 2. Use the wrapper for calculations
+                    const chartWidth = chartsWrapper.clientWidth;
+                    const currentIndex = Math.round(chartsWrapper.scrollLeft / chartWidth);
+
+                    // Update the active class on the dots
+                    dots.forEach((dot, index) => {
+                        // Using toggle is a cleaner way to add/remove the class
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+            }
+
+            // <-- 3. Add the event listener for scrolling
+            chartsWrapper.addEventListener('scroll', updateActiveDot);
+
+            // Start with the first chart and dot active
             showChart(currentChartIndex);
 
             // The button is now created with its own click handler.
             d3.select("#nextQuestion").on("click", setupQuiz);
             d3.select("#nextQuestion").on("click", displayRandomQuestion);
         });
-
     </script>
 
 </body>
