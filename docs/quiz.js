@@ -13,7 +13,6 @@ const questions = [
   },
   {
     q: "Qual presidente divulgou mais agendas?",
-    hint: 'Dica: Lembre-se que alguns tiveram mandatos mais longos',
     a: null // will be computed
   },
   {
@@ -54,6 +53,58 @@ const questions = [
     q: "Quantos presidentes o Brasil já teve até hoje?",
     a: '39'
   },
+
+  {
+    q: "Em que cidade nasceu o presidente Juscelino Kubitschek?",
+    a: 'Diamantina'
+  },
+
+  {
+    q: "Quem foi o primeiro presidente eleito pelo voto direto após a ditadura militar?",
+    a: 'Fernando Collor de Mello'
+  },
+
+  {
+    q: "Qual presidente brasileiro faleceu antes de tomar posse em 1985?",
+    a: 'Tancredo Neves'
+  },
+
+  {
+    q: "Em que ano Fernando Henrique Cardoso iniciou seu primeiro mandato presidencial?",
+    a: '1995'
+  },
+
+  {
+    q: "Qual presidente do Brasil governava quando ocorreu o golpe militar de 1964?",
+    a: 'João Goulart'
+  },
+
+  {
+    q: "Quem foi o segundo presidente do Brasil?",
+    a: 'Floriano Peixoto'
+  },
+
+  {
+    q: "Qual presidente brasileiro ficou conhecido pela frase “50 anos em 5”?",
+    a: 'Juscelino Kubitschek'
+  },
+
+  {
+    q: "Quem sucedeu Tancredo Neves na presidência em 1985?",
+    a: 'José Sarney'
+  },
+
+  {
+    q: "Em que ano o presidente Jânio Quadros renunciou?",
+    a: '1961'
+  },
+
+  {
+    q: "Qual presidente ficou no poder por mais tempo de forma contínua?",
+    a: 'Getúlio Vargas (1930–1945)'
+  },
+
+
 ];
 
 let availableQuestions = [];
