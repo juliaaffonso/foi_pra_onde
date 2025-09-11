@@ -87,8 +87,41 @@ const questions = [
   },
   {
     q: "Qual presidente ficou no poder por mais tempo de forma contínua?",
-    a: ['Getúlio Vargas', 'Getúlio']
+    a: ['Getúlio Vargas (1930 - 1945)', 'Getúlio', 'Getúlio Vargas']
   },
+
+  {
+    q: "Em que cidade está localizado o Palácio do Planalto?",
+    a: 'Brasília'
+  },
+
+  {
+    q: "Em que praça está localizado o Palácio do Planalto?",
+    a: ['Praça dos Três Poderes', 'Três Poderes', '3 Poderes', 'Praça dos 3 Poderes']
+  },
+
+  {
+    q: "O Palácio do Planalto é a residência ou o local de trabalho do presidente?",
+    a: ['Local de trabalho', 'Trabalho']
+  },
+
+  {
+    q: "O Palácio da Alvorada é a residência ou o local de trabalho do presidente?",
+    a: ['Residência oficial', 'Residência']
+  },
+
+  {
+    q: "Quem foi o arquiteto responsável pelo projeto do Palácio do Planalto e do Palácio da Alvorada?",
+    a: ['Oscar Niemeyer', 'Niemeyer']
+  },
+
+  {
+    q: "Qual é o nome da famosa escultura em frente ao Palácio da Alvorada?",
+    hint: 'Alfredo Ceschiatti é o artista responsável pela obra',
+    a: ['As Iaras', 'Iaras']
+  },
+
+
 ];
 
 let availableQuestions = [];

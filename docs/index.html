@@ -468,6 +468,33 @@
             margin-bottom: 15px;
         }
 
+        /* Style for the hint button */
+        .hint-btn {
+            background-color: #f0f0f0;
+            /* light gray background */
+            color: #333;
+            /* text color */
+            border: 1px solid #ccc;
+            /* border */
+            border-radius: 5px;
+            /* rounded corners */
+            padding: 8px 12px;
+            /* some padding */
+            font-size: 14px;
+            cursor: pointer;
+            /* pointer on hover */
+            transition: background-color 0.3s, color 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .hint-btn:hover {
+            background-color: #e0e0e0;
+            /* darker gray on hover */
+            color: #000;
+            /* darker text on hover */
+        }
+
+
         #quiz-feedback {
             margin-top: 20px;
             font-size: 1.1rem;
@@ -536,6 +563,11 @@
                 /* Makes the GIF smaller as well */
                 margin-bottom: 20px;
                 /* Adds some space below the GIF when stacked */
+            }
+
+            .navigation-buttons {
+                grid-template-columns: 1fr;
+                /* 1 button per row on smaller screens */
             }
 
             /* Make the dots visible on mobile */
