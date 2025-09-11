@@ -416,6 +416,100 @@
             /* Your theme's green color */
         }
 
+        /* CSS rule for the quiz hint */
+
+        #quiz-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+
+        .quiz-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #quiz-container input[type="text"] {
+            width: 280px;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            /* Added a subtle border */
+        }
+
+        .quiz-controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #149e59;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 20px
+        }
+
+        .quiz-controls button:hover {
+            background-color: #0c5014;
+        }
+
+        .quiz-hint {
+            color: #6c757d;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        #quiz-feedback {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 25px;
+            /* Prevents layout shifts */
+            transition: all 0.3s ease;
+        }
+
+        #quiz-feedback.correct {
+            color: #0c5014;
+            /* Dark green text */
+            background-color: #e9f5e9;
+            /* Light green background */
+        }
+
+        #quiz-feedback.incorrect {
+            color: #8B0000;
+            /* Dark red text */
+            background-color: #fdeaea;
+            /* Light red background */
+        }
+
+        .score-tracker {
+            text-align: center;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 25px;
+            /* Hide it by default and prepare for a smooth transition */
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s ease-in-out;
+        }
+
+        .score-tracker.visible {
+            /* This class will make it appear */
+            visibility: visible;
+            opacity: 1;
+        }
+
         /* Mobile Styles */
         /* This will override the desktop styles on screens 768px or smaller */
 
@@ -482,59 +576,6 @@
             #nextChart {
                 display: none;
             }
-        }
-
-        /* CSS rule for the quiz hint */
-        /* Your final CSS rules */
-
-        #quiz-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #eee;
-        }
-
-        .quiz-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        #quiz-container input[type="text"] {
-            width: 280px;
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            /* Added a subtle border */
-        }
-
-        .quiz-controls button {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #149e59;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-bottom: 20px
-        }
-
-        .quiz-controls button:hover {
-            background-color: #0c5014;
-        }
-
-        .quiz-hint {
-            color: #6c757d;
-            font-size: 0.9em;
-            font-style: italic;
-            margin-top: -10px;
-            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -644,6 +685,11 @@
         <div id="quiz-section" class="content-section">
             <h2>Quiz 🧩</h2>
             <div id="quiz-container"></div>
+            <h3 class="score-tracker">
+                Acertos: <span id="score-correct">0</span> / <span id="score-total">0</span>
+            </h3>
+            <div id="quiz-feedback"></div>
+
         </div>
 
         <div class="divider"></div>
