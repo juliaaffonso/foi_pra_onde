@@ -421,6 +421,29 @@
 
         @media (max-width: 768px) {
 
+            .header-visuals {
+                flex-direction: column;
+                /* Stack the logo and GIF vertically */
+                align-items: center;
+                /* Center them */
+            }
+
+            .svg-logo {
+                width: 90%;
+                /* Makes the logo take up 90% of its container's width */
+                max-width: 350px;
+                /* Optional: ensures it doesn't get too big */
+                margin-left: 0;
+                /* Removes the desktop-specific margin */
+            }
+
+            .gif-local {
+                height: 180px;
+                /* Makes the GIF smaller as well */
+                margin-bottom: 20px;
+                /* Adds some space below the GIF when stacked */
+            }
+
             /* Make the dots visible on mobile */
             .chart-dots {
                 display: block;
@@ -651,7 +674,7 @@
                     <img src="charts/barchart_month_presidents.svg" alt="Altair Chart">
                 </div>
             </div>
-            
+
             <div class="chart-dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -913,7 +936,7 @@
                 .attr("font-family", "sans-serif");
             // We remove text-anchor from here as it's set on the title itself
 
-            // --- Create a group for the chart content --- // <-- STEP 2: Create a translated group
+            // --- Create a group for the chart content --- //
             // All chart elements will go inside this 'g' tag.
             // It's moved down and to the right by the margin amounts.
             const chartGroup = svg.append("g")
@@ -926,7 +949,7 @@
 
             // --- D3 Pack Layout ---
             const pack = d3.pack()
-                .size([innerWidth, innerHeight]) // <-- STEP 3: Use inner dimensions for the layout
+                .size([innerWidth, innerHeight]) // <-- Use inner dimensions for the layout
                 .padding(5);
 
             const root = d3.hierarchy({ children: data })
@@ -945,8 +968,8 @@
             const defs = svg.append("defs"); // <-- Append defs to the main svg
 
             // --- Draw Bubbles (Nodes) ---
-            // IMPORTANT: Append the nodes to the 'chartGroup', not the 'svg'
-            const node = chartGroup.selectAll("g") // <-- STEP 4: Append to chartGroup
+            // Append the nodes to the 'chartGroup', not the 'svg'
+            const node = chartGroup.selectAll("g") // <-- Append to chartGroup
                 .data(nodes)
                 .join("g")
                 .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`);
