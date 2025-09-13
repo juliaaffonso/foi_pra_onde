@@ -125,7 +125,8 @@ const questions = [
 ];
 
 let availableQuestions = [];
-let correctAnswersCount = 0; // ✅ NEW
+let correctAnswersCount = 0;
+let feedbackTimeoutId = null;
 
 // --- Storage helper ---
 function markQuestionAsAnswered(questionIndex) {
@@ -232,13 +233,18 @@ async function setupQuiz() {
 
 // --- Question display ---
 function displayRandomQuestion() {
+  // Clear any pending timer from a previous answer
+  if (feedbackTimeoutId) {
+    clearTimeout(feedbackTimeoutId);
+    feedbackTimeoutId = null;
+  }
+
   const quizDiv = d3.select("#quiz-container");
   quizDiv.html("");
 
   if (availableQuestions.length === 0) {
     quizDiv.append("h3").text("Parabéns! 🏆");
     quizDiv.append("p").text("Você respondeu todas as perguntas.");
-    // ✅ Show restart button when done
     quizDiv.append("button")
       .attr("class", "restart-btn")
       .text("Reiniciar Quiz")
@@ -251,7 +257,6 @@ function displayRandomQuestion() {
 
   quizDiv.append("h3").text(currentQuestion.q);
 
-  // ✅ Hint only appears if user clicks "Mostrar dica"
   if (currentQuestion.hint) {
     const hintBtn = quizDiv.append("button")
       .attr("class", "hint-btn")
@@ -280,7 +285,6 @@ function displayRandomQuestion() {
 
       const feedback = d3.select("#quiz-feedback");
 
-      // Make score tracker visible after the first answered question
       if (!d3.select(".score-tracker").classed("visible")) {
         d3.select(".score-tracker").classed("visible", true);
       }
@@ -295,13 +299,13 @@ function displayRandomQuestion() {
           .attr("class", "incorrect");
       }
 
-      // Always update the correct score display
       d3.select("#score-correct").text(correctAnswersCount);
 
       markQuestionAsAnswered(currentQuestion.originalIndex);
       availableQuestions.splice(randomIndex, 1);
 
-      setTimeout(() => {
+      // Store the timer ID so we can cancel it if needed
+      feedbackTimeoutId = setTimeout(() => {
         displayRandomQuestion();
         feedback.text("").attr("class", "");
         input.property("value", "");
@@ -313,7 +317,6 @@ function displayRandomQuestion() {
     .text("Próxima")
     .on("click", displayRandomQuestion);
 }
-
 // --- Restart ---
 function restartQuiz() {
   sessionStorage.removeItem('answeredQuestions');
