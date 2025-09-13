@@ -6,15 +6,7 @@ const questions = [
     hint: 'Ela nasceu na América do Sul',
     a: "Shakira"
   },
-  {
-    q: "Quantas vezes o Palácio do Planalto é mencionado nas agendas presidenciais?",
-    hint: 'É um número na casa dos milhares',
-    a: null // will be computed
-  },
-  {
-    q: "Qual presidente divulgou mais agendas?",
-    a: null // will be computed
-  },
+  
   {
     q: "Qual é o dia da semana campeão de agendas?",
     a: ['Quarta-feira', 'Quarta']
@@ -133,41 +125,6 @@ function markQuestionAsAnswered(questionIndex) {
   const answeredIndices = JSON.parse(sessionStorage.getItem('answeredQuestions')) || [];
   if (!answeredIndices.includes(questionIndex)) answeredIndices.push(questionIndex);
   sessionStorage.setItem('answeredQuestions', JSON.stringify(answeredIndices));
-}
-
-// --- Dynamic data helpers ---
-async function countPlanalto() {
-  const files = [
-    "data/all_data.json",
-    "data/bolsonaro_agenda.json",
-    "data/agenda_dilma_final.json",
-    "data/temer_agenda.json"
-  ];
-  let total = 0;
-  for (let file of files) {
-    const data = await d3.json(file);
-    total += data.filter(d => d.local && d.local.toLowerCase().includes("palácio do planalto")).length;
-  }
-  return total;
-}
-
-async function findPresidentWithMostAgendas() {
-  const presidents = [
-    { name: "Lula", file: "data/all_data.json" },
-    { name: "Bolsonaro", file: "data/bolsonaro_agenda.json" },
-    { name: "Dilma", file: "data/agenda_dilma_final.json" },
-    { name: "Temer", file: "data/temer_agenda.json" }
-  ];
-  let maxAgendas = 0;
-  let winningPresident = "Ninguém";
-  for (const president of presidents) {
-    const data = await d3.json(president.file);
-    if (data.length > maxAgendas) {
-      maxAgendas = data.length;
-      winningPresident = president.name;
-    }
-  }
-  return winningPresident;
 }
 
 // --- String similarity for answers ---
