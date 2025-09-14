@@ -313,7 +313,7 @@ function displayRandomQuestion() {
   if (currentQuestion.hint) {
     const hintBtn = quizDiv.append("button")
       .attr("class", "hint-btn")
-      .text("Mostrar dica")
+      .text("Dica")
       .on("click", function () {
         d3.select(this).remove();
         quizDiv.append("p")
@@ -352,21 +352,27 @@ function displayRandomQuestion() {
   //-- Conditional Rendering Based on Question Type --//
 
   if (currentQuestion.type === "multiple_choice") {
-    // Render buttons for multiple-choice questions
-    const optionsDiv = quizDiv.append("div").attr("class", "quiz-options");
+  const optionsDiv = quizDiv.append("div").attr("class", "quiz-options");
 
-    optionsDiv.selectAll("button")
-      .data(currentQuestion.options)
-      .enter()
-      .append("button")
-      .attr("class", "option-btn")
-      .text(d => d)
-      .on("click", function(event, d) {
-        const userAnswer = d;
-        const isCorrect = userAnswer === currentQuestion.a;
-        processAnswer(isCorrect, currentQuestion.a);
-      });
-      
+  // Option buttons
+  optionsDiv.selectAll("button.option-btn")
+    .data(currentQuestion.options)
+    .enter()
+    .append("button")
+    .attr("class", "option-btn")
+    .text(d => d)
+    .on("click", function(event, d) {
+      const userAnswer = d;
+      const isCorrect = userAnswer === currentQuestion.a;
+      processAnswer(isCorrect, currentQuestion.a);
+    });
+
+  // "Próxima" button — now inside the same container
+  optionsDiv.append("button")
+    .attr("class", "next-btn")
+    .text("Próxima")
+    .on("click", displayRandomQuestion);
+
   } else { 
     // Render a text input for 'text' type questions (the default)
     const controlsDiv = quizDiv.append("div").attr("class", "quiz-controls");
