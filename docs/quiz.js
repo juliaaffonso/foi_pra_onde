@@ -27,12 +27,12 @@ const questions = [
   {
     type: "text",
     q: "Em que ano foi inaugurado o Palácio do Planalto?",
-    a: '1960'
+    a: ['1960', '60']
   },
   {
     type: "text",
     q: "Em que ano foi inaugurado o Palácio da Alvorada?",
-    a: '1958'
+    a: ['1958', '58']
   },
   {
     type: "text",
@@ -47,7 +47,7 @@ const questions = [
   {
     type: "text",
     q: "Quantos presidentes o Brasil já teve até hoje?",
-    a: '39'
+    a: ['39', 'trinta e nove']
   },
   {
     type: "text",
@@ -394,6 +394,7 @@ function displayRandomQuestion() {
 
     // "Next Question" button
     controlsDiv.append("button")
+    .attr("class", "next-btn")
     .text("Próxima")
     .on("click", displayRandomQuestion);
     }
