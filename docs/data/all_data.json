@@ -46410,7 +46410,7 @@
   {
     "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-09",
     "data":"2025-10-09",
-    "compromisso":"Partida para São Paulo",
+    "compromisso":"Partida para Brasília",
     "inicio":"19h20",
     "local":"Base Aérea de Salvador",
     "participantes":"sem informação na agenda"
@@ -46418,9 +46418,49 @@
   {
     "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-09",
     "data":"2025-10-09",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"20h50",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-10",
+    "data":"2025-10-10",
+    "compromisso":"Partida para São Paulo",
+    "inicio":"08h00",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-10",
+    "data":"2025-10-10",
     "compromisso":"Chegada a São Paulo",
-    "inicio":"21h10",
+    "inicio":"09h20",
     "local":"Aeroporto de Congonhas",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-10",
+    "data":"2025-10-10",
+    "compromisso":"Cerimônia de lançamento de novo modelo de crédito imobiliário",
+    "inicio":"10h30",
+    "local":"Centro de Convenções Rebouças",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-10",
+    "data":"2025-10-10",
+    "compromisso":"Partida para Brasília",
+    "inicio":"13h00",
+    "local":"Aeroporto de Congonhas",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-10-10",
+    "data":"2025-10-10",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"14h30",
+    "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   }
 ]
