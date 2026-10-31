@@ -440,571 +440,891 @@
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Governador do Estado do Rio de Janeiro, Cláudio Castro",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Partida para Belo Horizonte",
     "inicio":"08h00",
-    "local":"Palácio do Planalto",
+    "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Ministro da Casa Civil, Rui Costa, ministro da Secretaria de Relações Institucionais, Alexandre Padilha, e ministro da Secretaria de Comunicação Social, Paulo Pimenta",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Chegada a Belo Horizonte",
     "inicio":"09h00",
-    "local":"Palácio do Planalto",
+    "local":"Aeroporto da Pampulha – Belo Horizonte",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Presidente do Consórcio Interestadual de Desenvolvimento Sustentável do Nordeste – Consórcio Nordeste, governador da Paraíba, João Azevêdo, ministro da Casa Civil, Rui Costa, e ministro da Secretaria de Relações Institucionais, Alexandre Padilha",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Visita à planta de produção de insulina da Biomm",
+    "inicio":"09h45",
+    "local":"Planta de produção da Biomm – Nova Lima (MG)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Cerimônia de inauguração da planta de produção de insulina da Biomm",
+    "inicio":"10h40",
+    "local":"Planta de produção da Biomm – Nova Lima (MG)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Partida para São José dos Campos (SP)",
+    "inicio":"12h30",
+    "local":"Aeroporto da Pampulha – Belo Horizonte",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Chegada a São José dos Campos (SP)",
+    "inicio":"13h20",
+    "local":"Aeroporto de São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Inauguração de prédio de alojamento para estudantes do Instituto Tecnológico de Aeronáutica (ITA)",
+    "inicio":"14h00",
+    "local":"Instituto Tecnológico de Aeronáutica (ITA) – São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Reunião com Presidente e CEO da Embraer, Francisco Gomes Neto",
+    "inicio":"15h30",
+    "local":"Fábrica da Embraer, Hangar F300 – São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Reunião com o Diretor-Presidente da Azul, John Rodgerson",
+    "inicio":"16h10",
+    "local":"Fábrica da Embraer, Hangar F300 – São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Cerimônia de entrega de aeronave da Embraer à Azul",
+    "inicio":"16h45",
+    "local":"Fábrica da Embraer, Hangar F300 – São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Partida para São Paulo",
+    "inicio":"18h30",
+    "local":"Aeroporto de São José dos Campos (SP)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-26",
+    "data":"2024-04-26",
+    "compromisso":"Chegada a São Paulo",
+    "inicio":"18h50",
+    "local":"Aeroporto de Congonhas – São Paulo",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
+    "compromisso":"Ministro do Trabalho e Emprego, Luiz Marinho",
     "inicio":"10h00",
     "local":"Palácio do Planalto",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Ministro da Secretaria-Geral da Presidência da República, Márcio Macedo",
-    "inicio":"11h30",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Ministro da Casa Civil, Rui Costa, ministro da Fazenda, Fernando Haddad, ministro da Secretaria de Relações Institucionais, Alexandre Padilha, líder do governo no Senado Federal, senador Jaques Wagner, líder do governo na Câmara dos Deputados, deputado José Guimarães, e líder do governo no Congresso Nacional, senador Randolfe Rodrigues",
-    "inicio":"15h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Ministra da Saúde, Nísia Trindade",
-    "inicio":"16h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-10",
-    "data":"2023-01-10",
-    "compromisso":"Ministro da Educação, Camilo Santana",
-    "inicio":"17h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-11",
-    "data":"2023-01-11",
-    "compromisso":"Presidente do Consórcio Interestadual de Desenvolvimento Sustentável da Amazônia Legal, governador do estado do Pará, Helder Barbalho",
-    "inicio":"09h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-11",
-    "data":"2023-01-11",
-    "compromisso":"Governador do estado de São Paulo, Tarcísio de Freitas",
-    "inicio":"10h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-11",
-    "data":"2023-01-11",
-    "compromisso":"Presidente do Senado Federal, senador Rodrigo Pacheco, e presidente da Câmara dos Deputados, deputado Arthur Lira",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
+    "compromisso":"Ministra da Gestão e da Inovação em Serviços Públicos, Esther Dweck",
     "inicio":"11h00",
     "local":"Palácio do Planalto",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-11",
-    "data":"2023-01-11",
-    "compromisso":"Ministro do Desenvolvimento e Assistência Social, Família e Combate à Fome, Wellington Dias",
-    "inicio":"16h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2023-01-11",
-    "data":"2023-01-11",
-    "compromisso":"Cerimônias de assunção nos cargos das ministras da Igualdade Racial, Anielle Franco, e dos Povos Indígenas, Sônia Guajajara, com assinatura da sanção presidencial ao Projeto de Lei n° 4566\/2021, que tipifica a injúria racial como crime de racismo",
-    "inicio":"17h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Ministro da Secretaria de Comunicação Social, Sidônio  Palmeira, e Secretário de Imprensa da Secretaria de  Comunicação Social, Laércio Portela",
-    "inicio":"09h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Ministro da Fazenda, Fernando Haddad",
-    "inicio":"10h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República,  Marco Aurélio Marcola",
-    "inicio":"11h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa  Civil, Marcos Rogério de Souza",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Wellington César Lima",
     "inicio":"14h40",
     "local":"Palácio do Planalto",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Vice-Presidente da República e Ministro do  Desenvolvimento, Indústria, Comércio e Serviços,  Geraldo Alckmin",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
+    "compromisso":"Ministro da Justiça e Segurança Pública, Ricardo Lewandowski",
     "inicio":"15h00",
     "local":"Palácio do Planalto",
-    "participantes":"Ministro da Casa Civil, Rui Costa; Ministro da Fazenda, Fernando Haddad; Secretário-Executivo do Ministério da Fazenda, Dario Durigan; Secretário de Desenvolvimento Industrial, Inovação, Comércio e Serviços do MDIC, Uallace Moreira; Assessor Especial do Ministério da Fazenda, Igor Marchesini"
+    "participantes":"Secretário Nacional de Segurança Pública do MJSP, Mario Sarrubbo; Secretário Nacional de Políticas Penais do MJSP, André Garcia; Diretor-Geral da Polícia Federal, Andrei Rodrigues; Diretor-Geral da Polícia Rodoviária Federal, Antônio Fernando Souza; Assessora Especial do Ministro da Justiça e Segurança Pública e Coordenadora do Programa Nacional de Segurança Pública com Cidadania (Pronasci), Tamires Sampaio"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Presidente-executivo da Associação Nacional de  Fabricantes de Produtos Eletroeletrônicos (Eletros), José  Jorge do Nascimento Júnior, e CEO Midea Carrier Brasil,  Luiz Felipe Rodrigues Costa",
-    "inicio":"16h00",
-    "local":"Palácio do Planalto",
-    "participantes":"Ministro do Desenvolvimento, Indústria, Comércio e Serviços, Vice-Presidente da República Geraldo Alckmin; Ministro da Fazenda, Fernando Haddad"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"",
-    "inicio":"",
-    "local":"",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"",
-    "inicio":"",
-    "local":"",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Ministro da Educação, Camilo Santana",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
+    "compromisso":"Ministro da Fazenda, Fernando Haddad",
     "inicio":"17h00",
     "local":"Palácio do Planalto",
-    "participantes":"Ministro da Secretaria de Comunicação Social, Sidônio Palmeira; Secretário Especial para Assuntos Jurídicos da Casa Civil, Marcos Rogério de Souza"
+    "participantes":"Presidente do Conselho de Administração do Banco BTG Pactual, André Esteves"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-29",
+    "data":"2024-04-29",
     "compromisso":"",
     "inicio":"",
     "local":"",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"",
-    "inicio":"",
-    "local":"",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-17",
-    "data":"2025-03-17",
-    "compromisso":"Cerimônia Solene de Posse dos eleitos para o Conselho  Federal da Ordem dos Advogados do Brasil (CFOAB)",
-    "inicio":"19h30",
-    "local":"Centro de Convenções Ulysses Guimarães",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
-    "compromisso":"Ministro da Secretaria de Comunicação Social, Sidônio  Palmeira, e Secretário de Imprensa da Secretaria de  Comunicação Social, Laércio Portela",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Ministro da Secretaria de Relações Institucionais, Alexandre Padilha",
     "inicio":"09h00",
     "local":"Palácio do Planalto",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
-    "compromisso":"Reunião para Anúncio do Envio do Projeto de Lei de Ampliação da Isenção do Imposto de Renda ao Congresso Nacional",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Entrevista a jornalistas de veículos de comunicação japoneses",
+    "inicio":"10h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Wellington César Lima",
+    "inicio":"14h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Ministro da Justiça e Segurança Pública, Ricardo Lewandowski, Ministro do Trabalho e Emprego, Luiz Marinho, Advogado-Geral da União, Jorge Messias, e Presidente do Tribunal Superior do Trabalho, Ministro Lelio Bentes Corrêa",
+    "inicio":"14h40",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Ministro da Casa Civil, Rui Costa, e Ministro das Cidades, Jader Filho",
+    "inicio":"15h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"Ministra da Ciência, Tecnologia e Inovação, Luciana Santos",
+    "inicio":"16h30",
+    "local":"Palácio do Planalto",
+    "participantes":"Secretário-Executivo do Ministério da Ciência, Tecnologia e Inovação, Luis Fernandes"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-04-30",
+    "data":"2024-04-30",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-01",
+    "data":"2024-05-01",
+    "compromisso":"Partida para São Paulo",
+    "inicio":"09h00",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-01",
+    "data":"2024-05-01",
+    "compromisso":"Chegada a São Paulo",
+    "inicio":"10h20",
+    "local":"Base Aérea de Congonhas – São Paulo",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-01",
+    "data":"2024-05-01",
+    "compromisso":"Ato Unificado em Comemoração do 1º de Maio",
+    "inicio":"12h40",
+    "local":"Neo Química Arena – São Paulo",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-01",
+    "data":"2024-05-01",
+    "compromisso":"Partida para Brasília",
+    "inicio":"14h20",
+    "local":"Base Aérea de Congonhas – São Paulo",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-01",
+    "data":"2024-05-01",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"15h40",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Partida para Santa Maria (RS)",
+    "inicio":"07h30",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Chegada a Santa Maria (RS)",
+    "inicio":"09h45",
+    "local":"Base Aérea de Santa Maria (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Sobrevoo das áreas afetadas pelas chuvas",
+    "inicio":"10h00",
+    "local":"Santa Maria (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Reunião com o Governador do Rio Grande do Sul, Eduardo Leite",
+    "inicio":"10h40",
+    "local":"Base Aérea de Santa Maria (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Partida para Brasília",
+    "inicio":"12h30",
+    "local":"Base Aérea de Santa Maria (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-02",
+    "data":"2024-05-02",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"14h45",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Cerimônia oficial de chegada do Primeiro-Ministro do Japão, Fumio Kishida, por ocasião de sua visita ao Brasil",
+    "inicio":"09h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Reunião bilateral com Primeiro-Ministro do Japão, Fumio Kishida",
+    "inicio":"10h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Cerimônia de Assinatura de Atos",
     "inicio":"11h30",
     "local":"Palácio do Planalto",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
-    "compromisso":"Partida para Sorocaba",
-    "inicio":"13h30",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Declaração à imprensa",
+    "inicio":"11h40",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Almoço em homenagem ao Primeiro-Ministro do Japão, Fumio Kishida",
+    "inicio":"12h30",
+    "local":"Palácio Itamaraty",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Wellington César Lima",
+    "inicio":"14h40",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-03",
+    "data":"2024-05-03",
+    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República, Marco Aurélio Marcola",
+    "inicio":"15h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Partida para Canoas (RS)",
+    "inicio":"08h00",
     "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
-    "compromisso":"Chegada a Sorocaba (SP)",
-    "inicio":"14h50",
-    "local":"Aeroporto Estadual de Sorocaba (SP)",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Chegada a Canoas (RS)",
+    "inicio":"10h10",
+    "local":"Base Aérea de Canoas (RS)",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
-    "compromisso":"Visita à Fábrica da Toyota",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Sobrevoo de áreas afetadas pelas chuvas em Canoas",
+    "inicio":"10h20",
+    "local":"Canoas (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Pouso em área afetada pelas chuvas em Canoas",
+    "inicio":"10h40",
+    "local":"Canoas (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Reunião restrita com o Governador do Rio Grande do Sul, Eduardo Leite",
+    "inicio":"11h15",
+    "local":"Centro de Controle - 3º Regimento de Cavalaria de Guarda - Regimento Osório – Porto Alegre",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Reunião ampliada com o Governador do Rio Grande do Sul, Eduardo Leite",
+    "inicio":"12h15",
+    "local":"Centro de Controle - 3º Regimento de Cavalaria de Guarda - Regimento Osório – Porto Alegre",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Partida para Brasília",
+    "inicio":"14h40",
+    "local":"Base Aérea de Canoas (RS)",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2024-05-05",
+    "data":"2024-05-05",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"16h50",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
+    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República, Marco Aurélio Marcola, e Chefe do Gabinete Adjunto de Agenda do Gabinete Pessoal do Presidente da República, Oswaldo Malatesta",
+    "inicio":"10h00",
+    "local":"Palácio da Alvorada",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
+    "compromisso":"Partida para Campinas",
+    "inicio":"13h00",
+    "local":"Base Aérea de Brasília",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
+    "compromisso":"Chegada a Campinas",
+    "inicio":"14h20",
+    "local":"Aeroporto Internacional de Viracopos – Campinas",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
+    "compromisso":"Visita à linha de produção e cerimônia de inauguração da Fábrica da GWM Brasil",
     "inicio":"15h30",
-    "local":"Avenida Toyota, 9005 – Itavuvu – Sorocaba (SP)",
+    "local":"Fábrica da GWM Brasil – Iracemápolis (SP)",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
     "compromisso":"Partida para Brasília",
     "inicio":"18h30",
-    "local":"Aeroporto Estadual de Sorocaba (SP)",
+    "local":"Aeroporto Internacional de Viracopos – Campinas",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-18",
-    "data":"2025-03-18",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-15",
+    "data":"2025-08-15",
     "compromisso":"Chegada a Brasília",
     "inicio":"19h50",
     "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Partida para Mossoró (RN)",
-    "inicio":"08h00",
-    "local":"Base Aérea de Brasília",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Chegada a Mossoró (RN)",
-    "inicio":"10h15",
-    "local":"Aeroporto Municipal Governador Dix-Sept Rosado – Mossoró (RN)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Visita à Barragem de Oiticica",
-    "inicio":"11h15",
-    "local":"Jucurutu (RN)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Cerimônia de Inauguração da Barragem de Oiticica",
-    "inicio":"12h15",
-    "local":"Jucurutu (RN)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Partida para Fortaleza",
-    "inicio":"14h35",
-    "local":"Aeroporto Municipal Governador Dix-Sept Rosado – Mossoró (RN)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Chegada a Fortaleza",
-    "inicio":"15h15",
-    "local":"Aeroporto Internacional Pinto Martins – Fortaleza",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Visita às instalações da Torre C do Hospital Universitário do Ceará",
-    "inicio":"16h00",
-    "local":"Rua Betel, s\/n, Rachel de Queiroz – Fortaleza",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Cerimônia de Inauguração do Hospital Universitário do Ceará",
-    "inicio":"16h30",
-    "local":"Rua Betel, s\/n, Rachel de Queiroz – Fortaleza",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Partida para Brasília",
-    "inicio":"18h15",
-    "local":"Aeroporto Internacional Pinto Martins – Fortaleza",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-19",
-    "data":"2025-03-19",
-    "compromisso":"Chegada a Brasília",
-    "inicio":"20h55",
-    "local":"Base Aérea de Brasília",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-20",
-    "data":"2025-03-20",
-    "compromisso":"Prefeito do Recife, João Campos",
-    "inicio":"11h30",
-    "local":"Palácio do Planalto",
-    "participantes":"Ministro da Educação, Camilo Santana; Advogado-Geral da União, Jorge Messias"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-20",
-    "data":"2025-03-20",
-    "compromisso":"",
-    "inicio":"",
-    "local":"",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-20",
-    "data":"2025-03-20",
-    "compromisso":"",
-    "inicio":"",
-    "local":"",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-20",
-    "data":"2025-03-20",
-    "compromisso":"Ministra da Secretaria de Relações Institucionais, Gleisi Hoffmann",
-    "inicio":"15h30",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-20",
-    "data":"2025-03-20",
-    "compromisso":"Ministro das Relações Exteriores, Mauro Vieira",
-    "inicio":"17h00",
-    "local":"Palácio do Planalto",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-21",
-    "data":"2025-03-21",
-    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República, Marco Aurélio Marcola, e Chefe de Gabinete Adjunto de Agenda do Presidente da República, Oswaldo Malatesta",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Telefonema com o Presidente da Federação da Rússia, Vladimir Putin",
     "inicio":"09h00",
     "local":"Palácio da Alvorada",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-21",
-    "data":"2025-03-21",
-    "compromisso":"Ministro da Defesa, José Mucio",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Cerimônia oficial de chegada do Presidente da República do Equador, Daniel Noboa",
     "inicio":"11h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Reunião restrita entre o Presidente da República e o Presidente da República do Equador",
+    "inicio":"11h20",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Cerimônia de assinatura de atos",
+    "inicio":"12h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Declaração conjunta à imprensa",
+    "inicio":"12h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Almoço oferecido pelo Presidente da República ao Presidente da República do Equador",
+    "inicio":"13h00",
+    "local":"Palácio Itamaraty",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Ministro do Desenvolvimento e Assistência Social, Família e Combate à Fome, Wellington Dias",
+    "inicio":"15h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Marcelo Weick",
+    "inicio":"16h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-18",
+    "data":"2025-08-18",
+    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República, Marco Aurélio Marcola",
+    "inicio":"17h00",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"Ministro da Casa Civil, Rui Costa",
+    "inicio":"09h00",
+    "local":"Palácio do Planalto",
+    "participantes":"Ministro da Fazenda, Fernando Haddad; Ministra da Gestão e da Inovação em Serviços Públicos, Esther Dweck; Ministro das Cidades, Jader Filho; Ministra da Secretaria de Relações Institucionais, Gleisi Hoffmann; Ministro da Secretaria de Comunicação Social, Sidônio Palmeira; Presidente do Banco Central do Brasil, Gabriel Galípolo; Presidenta do Banco do Brasil, Tarciana Medeiros; Presidente da Caixa Econômica Federal, Carlos Vieira"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"Chefe do Gabinete Pessoal do Presidente da República, Marco Aurélio Marcola, e Chefe do Gabinete Adjunto de Agenda do Gabinete Pessoal do Presidente da República, Oswaldo Malatesta",
+    "inicio":"15h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"Presidente do Grupo do Banco Interamericano de Desenvolvimento (Grupo BID), Ilan Goldfajn",
+    "inicio":"16h30",
+    "local":"Palácio do Planalto",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Marcelo Weick",
+    "inicio":"17h30",
     "local":"Palácio da Alvorada",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-21",
-    "data":"2025-03-21",
-    "compromisso":"Ministro das Relações Exteriores, Mauro Vieira",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"Ministro da Justiça e Segurança Pública, Ricardo Lewandowski, e Ministra da Gestão e da Inovação em Serviços Públicos, Esther Dweck",
+    "inicio":"18h00",
+    "local":"Palácio da Alvorada",
+    "participantes":"Secretário de Relações de Trabalho do Ministério da Gestão e da Inovação em Serviços Públicos, Jose Lopez Feijó"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-19",
+    "data":"2025-08-19",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"Telefonema com o Presidente da França, Emmanuel Macron",
+    "inicio":"08h30",
+    "local":"Palácio da Alvorada",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"Ministro da Casa Civil, Rui Costa",
+    "inicio":"09h30",
+    "local":"Palácio da Alvorada",
+    "participantes":"Ministro da Fazenda, Fernando Haddad; Ministro do Desenvolvimento e Assistência Social, Família e Combate à Fome, Wellington Dias; Ministro de Minas e Energia, Alexandre Silveira; Ministra da Secretaria de Relações Institucionais da Presidência da República, Gleisi Hoffmann; Ministro da Secretaria de Comunicação Social, Sidônio Palmeira; Presidenta do Banco do Brasil, Tarciana Medeiros; Presidente do Banco Nacional de Desenvolvimento Econômico e Social (BNDES), Aloizio Mercadante; Presidente da Petrobras, Magda Chambriard"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"",
+    "inicio":"",
+    "local":"",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"Deputado Federal Antonio Carlos Rodrigues",
+    "inicio":"14h40",
+    "local":"Palácio da Alvorada",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"Ministra da Gestão e da Inovação em Serviços Públicos, Esther Dweck",
     "inicio":"15h00",
     "local":"Palácio da Alvorada",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-22",
-    "data":"2025-03-22",
-    "compromisso":"Partida para Houston (Texas)",
-    "inicio":"21h00",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-20",
+    "data":"2025-08-20",
+    "compromisso":"Secretário Especial para Assuntos Jurídicos da Casa Civil, Marcelo Weick Pogliese",
+    "inicio":"16h00",
+    "local":"Palácio da Alvorada",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Partida para Sorocaba",
+    "inicio":"08h00",
     "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-23",
-    "data":"2025-03-23",
-    "compromisso":"Chegada a Houston, Texas",
-    "inicio":"04h15",
-    "local":"Aeroporto Intercontinental George Bush",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-23",
-    "data":"2025-03-23",
-    "compromisso":"Partida para Tóquio",
-    "inicio":"06h40",
-    "local":"Aeroporto Intercontinental George Bush",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-24",
-    "data":"2025-03-24",
-    "compromisso":"Chegada a Tóquio",
-    "inicio":"10h15",
-    "local":"Aeroporto Internacional de Tóquio (Haneda)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Cerimônia de boas-vindas",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Chegada a Sorocaba",
     "inicio":"09h20",
-    "local":"Palácio Imperial",
+    "local":"Aeroporto Estadual de Sorocaba",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Encontro reservado com Suas Majestades o Imperador Naruhito e a Imperatriz Masako",
-    "inicio":"09h35",
-    "local":"Palácio Imperial - Sala de Audiências (Take-no-ma)",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Reunião com integrantes da Associação Brasileira das Indústrias Exportadoras de Carnes (ABIEC)",
-    "inicio":"11h00",
-    "local":"Hotel Imperial",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Almoço privado",
-    "inicio":"13h00",
-    "local":"Local de hospedagem",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Reunião com o CEO da Embraer, Francisco Gomes Neto",
-    "inicio":"15h00",
-    "local":"Hotel Imperial",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-25",
-    "data":"2025-03-25",
-    "compromisso":"Jantar oferecido por Suas Majestades Imperiais, o Imperador Naruhito e a Imperatriz Masako, em homenagem ao Presidente da República e à Senhora Janja Lula da Silva",
-    "inicio":"19h00",
-    "local":"Palácio Imperial - Salão de Banquetes",
-    "participantes":"sem informação na agenda"
-  },
-  {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Reunião com representantes sindicais japoneses",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Visita à frota e cerimônia de entrega de 400 novas Unidades Odontológicas Móveis",
     "inicio":"10h00",
-    "local":"Hotel Imperial",
+    "local":"Flash Engenharia - Alto da Boa Vista- Sorocaba (SP)",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Sessão de encerramento do Fórum Empresarial Brasil-Japão",
-    "inicio":"12h15",
-    "local":"Hotel New Otani",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Partida para Brasília",
+    "inicio":"12h30",
+    "local":"Aeroporto Estadual de Sorocaba",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Reunião com representantes da Associação de Pesquisadores brasileiros no Japão - ABrJ",
-    "inicio":"15h00",
-    "local":"Hotel Imperial",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"13h50",
+    "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Audiência concedida ao Presidente da Fundação Nippon e Embaixador da Boa Vontade da Organização Mundial da Saúde para a Eliminação da Hanseníase, Yohei Sasakawa",
-    "inicio":"16h15",
-    "local":"Hotel Imperial",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Partida para Bogotá",
+    "inicio":"19h00",
+    "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Reunião bilateral com o Primeiro-Ministro do Japão, Shigeru Ishiba",
-    "inicio":"18h10",
-    "local":"Palácio Akasaka",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-21",
+    "data":"2025-08-21",
+    "compromisso":"Chegada a Bogotá",
+    "inicio":"21h45",
+    "local":"Aeroporto Internacional El Dorado, Comando Aéreo de Transporte Militar",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Cerimônia de anúncio de plano de ação e menção aos atos previamente assinados",
-    "inicio":"19h15",
-    "local":"Palácio Akasaka",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"Encontro dos Presidentes dos Estados Partes do Tratado de Cooperação Amazônica com a Sociedade Civil e Comunidades Indígenas",
+    "inicio":"09h40",
+    "local":"Plaza de Armas",
     "participantes":"sem informação na agenda"
   },
   {
-    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-03-26",
-    "data":"2025-03-26",
-    "compromisso":"Jantar oferecido pelo Primeiro-Ministro do Japão, Shigeru Ishiba, em homenagem ao Presidente da República",
-    "inicio":"19h40",
-    "local":"Palácio de Akasaka",
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"5ª Reunião de Presidentes dos Estados Partes do Tratado de Cooperação Amazônica e Adoção da Declaração de Bogotá",
+    "inicio":"12h20",
+    "local":"Casa de Nariño",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"Declaração dos Presidentes à imprensa",
+    "inicio":"13h20",
+    "local":"Plaza de Armas",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"Reunião bilateral com Presidente da República da Colômbia, Gustavo Petro",
+    "inicio":"14h00",
+    "local":"Casa de Nariño",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"Partida para Brasília",
+    "inicio":"16h05",
+    "local":"Aeroporto Internacional El Dorado",
+    "participantes":"sem informação na agenda"
+  },
+  {
+    "url":"https:\/\/www.gov.br\/planalto\/pt-br\/acompanhe-o-planalto\/agenda-do-presidente-da-republica-lula\/agenda-do-presidente-da-republica\/2025-08-22",
+    "data":"2025-08-22",
+    "compromisso":"Chegada a Brasília",
+    "inicio":"22h35",
+    "local":"Base Aérea de Brasília",
     "participantes":"sem informação na agenda"
   }
 ]
